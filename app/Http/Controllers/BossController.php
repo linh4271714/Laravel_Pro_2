@@ -22,5 +22,6 @@ class BossController extends Controller
         $boss->pass = Request::post('pass');
         $boss_model = new BossModel();
         $boss_model->login_boss_process($boss);
+        gytfguyhujiut
     }
 }
