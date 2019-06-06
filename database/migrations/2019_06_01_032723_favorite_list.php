@@ -15,7 +15,7 @@ class FavoriteList extends Migration
     {
         Schema::create('FavoriteList', function (Blueprint $table) {
             $table->integer('ID_reader');
-            $table->string('ID_book');
+            $table->string('ID_book',100);
             $table->primary(['ID_reader','ID_book']);
         });
     }

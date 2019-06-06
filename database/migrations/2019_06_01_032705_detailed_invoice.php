@@ -15,7 +15,7 @@ class DetailedInvoice extends Migration
     {
         Schema::create('DetailedInvoice', function (Blueprint $table) {
             $table->integer('ID_bill');
-            $table->string('ID_book');
+            $table->string('ID_book',100);
             $table->integer('Amount');
             $table->integer('Price');
             $table->primary(['ID_bill','ID_book']);
