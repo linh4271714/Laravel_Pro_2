@@ -5,12 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 class BossController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    private $folder = 'boss';
     public function login_boss()
     {
         return view('login_boss');
@@ -27,4 +22,14 @@ class BossController extends Controller
     {
         return view('sign_in_boss');
     }
-}
+    public function sign_in_boss_process()
+    {
+        $boss = new BossModel();
+        $boss->userName = Request::get('userName']);
+        $boss->email = Request::get('email');
+        $boss->phone = Request::get('sdt');
+        $boss->pass = Request::get('pass');
+        $boss_model->sign_in_boss_process();
+
+        return redirect()->route('boss_view_all');
+    }

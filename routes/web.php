@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('boss', "BossController@login_boss")
 ->name('login_boss');
 Route::post('boss/login_boss_process',"BossController@login_boss_process")
@@ -24,6 +25,9 @@ Route::get('boss/sign_in_boss',"BossController@sign_in_boss")
 ->name('sign_in_boss');
 Route::get('boss/sign_in_boss_process',"BossController@sign_in_boss_process")
 ->name('sign_in_boss_process');
+
+Route::get('boss/view_all',"BossController@boss_view_all")
+->name('boss_view_all')
 
 Route::get('manager', "ManagerController@view_all");
 Route::get('manager/view_one/{ID_manager}',"ManagerController@view_one");

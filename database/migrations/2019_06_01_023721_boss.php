@@ -15,10 +15,9 @@ class Boss extends Migration
     {
         Schema::create('Boss', function (Blueprint $table) {
             $table->string('Username');
-            $table->string('Pass');
             $table->string('Email');
+            $table->string('Pass');
             $table->integer('PhoneNumber');
-            $table->string('Address');
         });
     }
 
