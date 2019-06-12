@@ -1,0 +1,71 @@
+body{
+    margin-left: 500px;
+    padding: 0;
+    padding: 0;
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100%;
+}
+.table{
+	width: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color:white;
+	border-radius: 40px;
+}
+.table h2{
+	font-size: 40px;
+	border-bottom: 6px solid #27ff00;
+	margin-bottom: 50px;
+	width: 50%;
+}
+.table i{
+	padding-right: 10px;
+} 
+.textbox{
+	width: 100%;
+	overflow: hidden;
+	font-size: 20px;
+	padding:8px 0;
+	margin:8px 0;
+	border-bottom: 1px solid #27ff00;
+}
+.textbox i{
+	width: 26px;
+	float: left;
+	text-align: center;
+}
+.textbox input{
+	border:none;
+	outline: none;
+	background: none;
+	color: white;
+	font-size: 18px;
+}
+
+.table button{
+	width: 50%;
+	background: none;
+	border:2px solid #27ff00;
+	cursor: pointer;
+	color: white;
+	font-size: 18px;
+	margin:12px 0;
+	border-radius: 40px;
+	margin-left: 100px;
+}
+.table button:hover{
+	background: #27ff00;
+	color: white;
+}
+.table a{
+	list-style: none;
+	text-decoration: none;
+	color: white;
+}
+.table h3{
+	text-align: center; 
+	font-style: 
+}
