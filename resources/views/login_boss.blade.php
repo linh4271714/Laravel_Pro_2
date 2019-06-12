@@ -31,7 +31,7 @@
 			</form><br>
 			<font size="+3" face="arial"></font>
 			<button>
-				<a href="{{ route('signin_boss') }}">Create Accout</a>
+				<a href="{{ route('sign_in_boss') }}">Create Accout</a>
 			</button>
 			<br>
 	</div>

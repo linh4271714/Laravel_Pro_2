@@ -23,4 +23,8 @@ class BossController extends Controller
         $boss_model = new BossModel();
         $boss_model->login_boss_process($boss);
     }
+    public function sign_in_boss()
+    {
+        return view('sign_in_boss');
+    }
 }
