@@ -14,9 +14,12 @@ class FavoriteList extends Migration
     public function up()
     {
         Schema::create('FavoriteList', function (Blueprint $table) {
-            $table->integer('ID_reader');
+            $table->integer('ID_reader')->unsigned();
             $table->string('ID_book',100);
             $table->primary(['ID_reader','ID_book']);
+
+            $table->foreign('ID_reader')->references('ID_reader')->on('readers');
+            $table->foreign('ID_book')->references('ID_book')->on('books');
         });
     }
 

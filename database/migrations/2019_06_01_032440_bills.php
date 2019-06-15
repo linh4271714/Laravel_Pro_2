@@ -14,15 +14,19 @@ class Bills extends Migration
     public function up()
     {
         Schema::create('Bills', function (Blueprint $table) {
-            $table->bigIncrements('ID_bill');
-            $table->integer('ID_reader');
-            $table->integer('ID_lender');
+            $table->increments('ID_bill');
+            $table->integer('ID_reader')->unsigned();
+            $table->integer('ID_lender')->unsigned();
             $table->date('BorrowDate');
-            $table->integer('ID_receiver');
+            $table->integer('ID_receiver')->unsigned();
             $table->date('ReturnDate');
             $table->integer('Form');
             $table->integer('Total');
             $table->integer('Status');
+
+            $table->foreign('ID_reader')->references('ID_reader')->on('readers');
+            $table->foreign('ID_lender')->references('ID_manager')->on('managers');
+            $table->foreign('ID_receiver')->references('ID_manager')->on('managers');
         });
     }
 

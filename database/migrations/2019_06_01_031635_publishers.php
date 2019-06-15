@@ -14,7 +14,7 @@ class Publishers extends Migration
     public function up()
     {
         Schema::create('Publishers', function (Blueprint $table) {
-            $table->bigIncrements('ID_publisher');
+            $table->increments('ID_publisher');
             $table->string('Name');
         });
     }

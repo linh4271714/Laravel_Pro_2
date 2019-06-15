@@ -14,7 +14,7 @@ class Notifications extends Migration
     public function up()
     {
         Schema::create('Notifications', function (Blueprint $table) {
-            $table->bigIncrements('ID_post');
+            $table->increments('ID_post');
             $table->string('Title',50);
             $table->date('Date');
             $table->string('Content',1000);

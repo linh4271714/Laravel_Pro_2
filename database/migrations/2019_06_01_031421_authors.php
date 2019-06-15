@@ -14,7 +14,7 @@ class Authors extends Migration
     public function up()
     {
         Schema::create('Authors', function (Blueprint $table) {
-            $table->bigIncrements('ID_author');
+            $table->increments('ID_author');
             $table->string('Name');
         });
     }

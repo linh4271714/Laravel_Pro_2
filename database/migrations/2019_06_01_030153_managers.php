@@ -14,7 +14,7 @@ class Managers extends Migration
     public function up()
     {
         Schema::create('Managers', function (Blueprint $table) {
-            $table->bigIncrements('ID_manager');
+            $table->increments('ID_manager');
             $table->string('Username');
             $table->string('Pass');
             $table->string('Email');

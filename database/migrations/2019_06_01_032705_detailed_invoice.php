@@ -14,11 +14,14 @@ class DetailedInvoice extends Migration
     public function up()
     {
         Schema::create('DetailedInvoice', function (Blueprint $table) {
-            $table->integer('ID_bill');
+            $table->integer('ID_bill')->unsigned();
             $table->string('ID_book',100);
             $table->integer('Amount');
             $table->integer('Price');
             $table->primary(['ID_bill','ID_book']);
+
+            $table->foreign('ID_bill')->references('ID_bill')->on('bills');
+            $table->foreign('ID_book')->references('ID_book')->on('books');
         });
     }
 

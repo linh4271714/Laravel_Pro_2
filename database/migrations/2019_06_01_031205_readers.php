@@ -14,10 +14,11 @@ class Readers extends Migration
     public function up()
     {
         Schema::create('Readers', function (Blueprint $table) {
-            $table->bigIncrements('ID_reader');
+            $table->increments('ID_reader');
             $table->string('Username');
-            $table->string('Pass');
+            $table->integer('Identification');
             $table->string('Email');
+            $table->string('Pass');
             $table->integer('PhoneNumber');
             $table->string('Address');
         });

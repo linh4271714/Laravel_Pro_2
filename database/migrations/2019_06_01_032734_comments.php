@@ -14,10 +14,13 @@ class Comments extends Migration
     public function up()
     {
         Schema::create('Comments', function (Blueprint $table) {
-            $table->bigIncrements('ID_cmt');
-            $table->string('ID_book');
-            $table->integer('ID_reader');
+            $table->increments('ID_cmt');
+            $table->string('ID_book',100);
+            $table->integer('ID_reader')->unsigned();
             $table->string('Content',500);
+
+            $table->foreign('ID_book')->references('ID_book')->on('books');
+            $table->foreign('ID_reader')->references('ID_reader')->on('readers');
         });
     }
 
