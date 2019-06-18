@@ -14,7 +14,7 @@
 		</tr>
 	@endforeach
 	<caption>
-		<a href="">
+		<a href="{{ route('boss_check_password') }}">
 			<button class="btn btn-success">Edit Accout</button>
 		</a>
 	</caption>

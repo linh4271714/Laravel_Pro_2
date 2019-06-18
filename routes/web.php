@@ -15,20 +15,32 @@ Route::get('/', function () {
     return view('welcome');
 });
 //boss
-Route::get('boss', "BossController@login_boss")
+Route::get('boss/login_boss', "BossController@login_boss")
 ->name('login_boss');
 
 Route::post('boss/login_boss_process',"BossController@login_boss_process")
 ->name('login_boss_process');
 
-Route::get('boss/sign_in_boss',"BossController@sign_in_boss")
-->name('sign_in_boss');
+Route::get('boss/view_accout',"BossController@boss_view_accout")
+->name('boss_view_accout');
 
-Route::get('boss/sign_in_boss_process',"BossController@sign_in_boss_process")
-->name('sign_in_boss_process');
+Route::get('boss/check_password',"BossController@boss_check_password")
+->name('boss_check_password');
 
-Route::get('boss/view_all',"BossController@boss_view_all")
-->name('boss_view_all');
+Route::post('boss/check_password_process',"BossController@check_password_process")
+->name('check_password_process');
+
+Route::get('boss/boss_edit_accout',"BossController@boss_edit_accout")
+->name('boss_edit_accout');
+
+Route::post('boss/boss_edit_accout_process',"BossController@boss_edit_accout_process")
+->name('boss_edit_accout_process');
+
+Route::get('boss/boss_edit_password',"BossController@boss_edit_password")
+->name('boss_edit_password');
+
+Route::post('boss/boss_edit_password_process',"BossController@boss_edit_password_process")
+->name('boss_edit_password_process');
 
 //managers
 Route::get('manager', "ManagerController@view_all");

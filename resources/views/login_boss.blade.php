@@ -15,25 +15,28 @@
 </head>
 
 <body>
+	@if(isset($_GET['err'])){
+		@echo "Có lỗi, mời bạn đăng nhập lại!";
+	}
+	@endif
 	<div class="table">
 		<h2>Login</h2>
-			<form action="{{ route('login_boss_process') }}" @method('post')>
-		
-		<div class="textbox">
+		<form action="{{ route('login_boss_process') }}" method='post'>
+			<div class="textbox">
 				<i class="fas fa-user"></i>
 				<input type="text" name="email" placeholder="Email"><br>
-		</div>
-		<div class="textbox">
+			</div>
+			<div class="textbox">
 				<i class="fas fa-lock"></i>
 				<input type="password" name="pass" placeholder="Password"><br>
-		</div>
-			<button>Login</button>
-			</form><br>
-			<font size="+3" face="arial"></font>
-			<button>
-				<a href="{{ route('sign_in_boss') }}">Create Accout</a>
-			</button>
-			<br>
+			</div>
+				<button>Login</button>
+		</form><br>
+		<font size="+3" face="arial"></font>
+		<button>
+			<a href="{{ route('sign_in_boss') }}">Create Accout</a>
+		</button>
+		<br>
 	</div>
 </body>
 </html>
