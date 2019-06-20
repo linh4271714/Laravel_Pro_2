@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+</html>
 <table class="table table-striped">
 	<tr>
 		<th>User Name</th>
@@ -19,3 +26,5 @@
 		</a>
 	</caption>
 </table>
+
+</body>

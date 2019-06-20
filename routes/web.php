@@ -15,32 +15,41 @@ Route::get('/', function () {
     return view('welcome');
 });
 //boss
-Route::get('boss/login_boss', "BossController@login_boss")
-->name('login_boss');
+Route::get('boss/boss_login', "BossController@boss_login")
+->name('boss_login');
+Route::post('boss/boss_login_process',"BossController@boss_login_process")
+->name('boss_login_process');
+Route::group(["prefix" => "boss", "middleware" => "CheckBoss"], function(){
+	Route::get("boss/boss_logout","BossController@boss_logout")
+	->name("boss_logout");
+		Route::group(["prefix" => "boss"], function(){
 
-Route::post('boss/login_boss_process',"BossController@login_boss_process")
-->name('login_boss_process');
+			$group      = "boss";
+			$controller = "BossController";
 
-Route::get('boss/view_accout',"BossController@boss_view_accout")
-->name('boss_view_accout');
+			Route::get('$group/boss_view_accout',"$controller@boss_view_accout")
+			->name('boss_view_accout');
 
-Route::get('boss/check_password',"BossController@boss_check_password")
-->name('boss_check_password');
+			Route::get('$group/check_password',"$controller@boss_check_password")
+			->name('boss_check_password');
 
-Route::post('boss/check_password_process',"BossController@check_password_process")
-->name('check_password_process');
+			Route::post('$group/check_password_process',"$controller@check_password_process")
+			->name('check_password_process');
 
-Route::get('boss/boss_edit_accout',"BossController@boss_edit_accout")
-->name('boss_edit_accout');
+			Route::get('$group/boss_edit_accout',"$controller@boss_edit_accout")
+			->name('boss_edit_accout');
 
-Route::post('boss/boss_edit_accout_process',"BossController@boss_edit_accout_process")
-->name('boss_edit_accout_process');
+			Route::post('$group/boss_edit_accout_process',"$controller@boss_edit_accout_process")
+			->name('boss_edit_accout_process');
 
-Route::get('boss/boss_edit_password',"BossController@boss_edit_password")
-->name('boss_edit_password');
+			Route::get('$group/boss_edit_password',"$controller@boss_edit_password")
+			->name('boss_edit_password');
 
-Route::post('boss/boss_edit_password_process',"BossController@boss_edit_password_process")
-->name('boss_edit_password_process');
+			Route::post('$group/boss_edit_password_process',"$controller@boss_edit_password_process")
+			->name('boss_edit_password_process');
+	});
+});
+
 
 //managers
 Route::get('manager', "ManagerController@view_all");

@@ -9,18 +9,39 @@ class BossController extends Controller
 {
     private $folder = 'boss';
 
+    public function boss_login()
+    {
+        return view('boss_login');
+    }
+
+    public function boss_login_process()
+    {
+        $boss           = new BossModel();
+        $boss->email    = Request::get('email');
+        $boss->mat_khau = Request::get('pass');
+        $boss           = $boss->boss_login_process();
+
+        if(count($boss)==1){
+            Session::put('UserName',$boss[0]->UserName);
+
+            return redirect()->route('boss_view_accout');
+        }
+        return redirect()->route('boss_login')->with('error','Thông tin đăng nhập sai.');
+    }
+
     public function boss_view_accout()
     {
         $boss_model = new BossModel();
         $array_boss = $boss_model->get_accout();
 
-        return view('boss_view_all',compact('array_boss'));
+        return view('boss_view_accout',compact('array_boss'));
     }
 
     public function boss_check_password()
     {
         return view('boss_check_password');
     }
+
     public function check_password_process(Request $request)
     {
         $pass_check = Request::post('pass_check');
@@ -38,6 +59,7 @@ class BossController extends Controller
 
         return view('boss_edit_accout',compact('array_boss'));
     }
+
     public function boss_edit_accout_process(Request $request)
     {
         $boss           = new BossModel();

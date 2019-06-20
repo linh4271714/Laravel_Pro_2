@@ -9,19 +9,19 @@ class BossModel extends Model
 {
     protected $table = 'boss';
     
-    public function login_boss_process($boss)
+    public function boss_login_process()
     {
-        $email = $boss->email;
-        $pass  = $boss->pass;
-        $boss_result = DB::select("select * from $this->table where Email = ? and Pass = ?",[$email,$pass]);
-        
-        $demSoBanGhi = count($boss_result);
-        return $demSoBanGhi;
+        $boss = DB::select("select * from $this->table 
+            where Email = ? and Pass = ? 
+            limit 1",[
+                $this->email, $this->pass
+            ]);
+        return $boss;
     }
 
     public function get_accout()
     {
-        $array_boss = DB::select("select * from $this->table");
+        $array_boss = DB::select("select * from $this->table limit 1");
         return $array_boss;
     }
 
