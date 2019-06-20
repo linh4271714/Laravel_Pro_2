@@ -41,11 +41,11 @@ class BossController extends Controller
     public function boss_edit_accout_process(Request $request)
     {
         $boss           = new BossModel();
-        $boss->userName = Request::post('userName');
-        $boss->email    = Request::post('email');
-        $boss->phone    = Request::post('phone');
+        $boss->userName = Request::get('userName');
+        $boss->email    = Request::get('email');
+        $boss->phone    = Request::get('phone');
         $boss->boss_edit_accout_process();
 
-        return redirect()->route('boss_view_all');
+        return redirect()->route('boss_view_accout');
     }
 }
