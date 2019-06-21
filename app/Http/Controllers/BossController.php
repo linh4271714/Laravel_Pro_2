@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
+use Session;
 use App\Model\BossModel;
 
 class BossController extends Controller
@@ -14,19 +15,18 @@ class BossController extends Controller
         return view('boss_login');
     }
 
-    public function boss_login_process()
+    public function boss_login_process(Request $request)
     {
-        $boss           = new BossModel();
-        $boss->email    = Request::get('email');
-        $boss->mat_khau = Request::get('pass');
-        $boss           = $boss->boss_login_process();
-
-        if(count($boss)==1){
-            Session::put('UserName',$boss[0]->UserName);
+        $boss        = new BossModel();
+        $boss->email = Request::get('email');
+        $boss->pass  = Request::get('pass');
+        $boss_array  = $boss->boss_login_process();
+        if(count($boss_array)==1){
+            Session::put('username',$boss_array[0]->Username);
 
             return redirect()->route('boss_view_accout');
         }
-        return redirect()->route('boss_login')->with('error','Thông tin đăng nhập sai.');
+        return redirect()->route('boss_login')->with('error','Login information is incorrect.');
     }
 
     public function boss_view_accout()
@@ -42,14 +42,33 @@ class BossController extends Controller
         return view('boss_check_password');
     }
 
-    public function check_password_process(Request $request)
+    public function boss_check_password_process()
     {
-        $pass_check = Request::post('pass_check');
+        $pass_check = Request::get('pass_check');
         $boss_model = new BossModel();
-        $pass       = $boss_model->get_pass();
+        $array_boss = $boss_model->get_accout();
+        $pass       = $array_boss[0]->Pass;
         if($pass==$pass_check){
-            return view('boss_edit_accout');
+            return redirect()->route('boss_edit_accout');
         }
+        return redirect()->route('boss_check_password')->with('error','Incorrect password.');
+    }
+
+    public function boss_check_password_2()
+    {
+        return view('boss_check_password_2');
+    }
+
+    public function boss_check_password_process_2()
+    {
+        $pass_check = Request::get('pass_check');
+        $boss_model = new BossModel();
+        $array_boss = $boss_model->get_accout();
+        $pass       = $array_boss[0]->Pass;
+        if($pass==$pass_check){
+            return redirect()->route('boss_change_password');
+        }
+        return redirect()->route('boss_check_password_2')->with('error','Incorrect password.');
     }
 
     public function boss_edit_accout()
@@ -60,7 +79,7 @@ class BossController extends Controller
         return view('boss_edit_accout',compact('array_boss'));
     }
 
-    public function boss_edit_accout_process(Request $request)
+    public function boss_edit_accout_process()
     {
         $boss           = new BossModel();
         $boss->userName = Request::get('userName');
@@ -68,6 +87,25 @@ class BossController extends Controller
         $boss->phone    = Request::get('phone');
         $boss->boss_edit_accout_process();
 
-        return redirect()->route('boss_view_accout');
+        return redirect()->route('boss_view_accout')->with('success','Edit successful!');
+    }
+
+    public function boss_change_password()
+    {
+        return view('boss_change_password');
+    }
+
+    public function boss_change_password_process()
+    {
+        $boss_model = new BossModel();
+        $boss_model->pass = Request::get('pass');
+        $boss_model->boss_change_password_process();
+        return redirect()->route('boss_view_accout')->with('success','Change successful!');
+    }
+
+    public function boss_logout()
+    {
+        Session::flush();
+        return redirect()->route('boss_login')->with('success','Logout successful.');
     }
 }

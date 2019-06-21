@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
 	<div style="width: 15%; background-color: yellow; text-align: center;" align="left">
 			ACCOUT<br>
 		<a href="{{ route('boss_view_accout') }}">View Accout</a><br>
@@ -23,5 +17,3 @@
 		<a href="">Older Notifications</a><br>
 		<a href="">Change Rate</a><br>
 	</div>
-</body>
-</html>

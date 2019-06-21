@@ -16,7 +16,7 @@ class CheckBoss
      */
     public function handle($request, Closure $next)
     {
-        if(Session::has('userName')){
+        if(Session::has('username')){
             return $next($request);
         }
         return redirect()->route('boss_login')->with('error','Mời bạn đăng nhập!');
