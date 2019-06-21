@@ -1,4 +1,5 @@
-@extends('layer.menu')
+@extends('layer.master')
+@section('content')
 		Edit Accout <br>
 		<form action="{{ route('boss_change_password_process') }}" method='post'>
 			{{csrf_field()}}
@@ -6,3 +7,4 @@
 			Re-enter password: <input type="password" name="repass"><br>
 			<button>Change</button>
 		</form>
+@endsection

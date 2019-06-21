@@ -1,4 +1,5 @@
-@extends('layer.menu')
+@extends('layer.master')
+@section('content')
 Edit Accout <br>
 <form action="{{ route('boss_edit_accout_process') }}" method='post'>
 	{{csrf_field()}} 
@@ -9,3 +10,4 @@ Edit Accout <br>
 	@endforeach
 	<button>Edit</button>
 </form>
+@endsection
