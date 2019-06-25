@@ -134,18 +134,6 @@ class ManagerController extends Controller
     {
         $mng_model = new ManagerModel();
         $mng_model->category1 = Request::get('category1');
-        if(isset(Request::get('category2'))){
-            $mng_model->category2 = Request::get('category2');
-        }
-        if(isset(Request::get('category3'))){
-            $mng_model->category3 = Request::get('category3');
-        }
-        if(isset(Request::get('category4'))){
-            $mng_model->category4 = Request::get('category4');
-        }
-        if(isset(Request::get('category5'))){
-            $mng_model->category5 = Request::get('category5');
-        }
         $mng_model->mng_add_category_process();
 
         return redirect()->route('view_all_category');
