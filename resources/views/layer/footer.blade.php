@@ -1,5 +1,6 @@
  <div style="width: 15%; background-color: violet; height: 50px">
-    	Một câu châm ngôn gì đó về đọc sách
+    	FOOTER
     	<br>
+    	Một câu châm ngôn gì đó về đọc sách
     	(chưa nghĩ ra)
     </div>

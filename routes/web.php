@@ -11,11 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome_reader');
-});
 //boss
-Route::get('boss/boss_login', "BossController@boss_login")
+Route::get('boss', "BossController@boss_login")
 ->name('boss_login');
 Route::post('boss/boss_login_process',"BossController@boss_login_process")
 ->name('boss_login_process');
@@ -64,19 +61,102 @@ Route::group(["prefix" => "boss", "middleware" => "CheckBoss"], function(){
 
 		Route::get('$group/boss_logout',"$controller@boss_logout")
 		->name('boss_logout');
+
+		Route::get('$group/boss_add_manager',"$controller@boss_add_manager")
+		->name('boss_add_manager');
+
+		Route::get('$group/boss_add_manager_process',"$controller@boss_add_manager_process")
+		->name('boss_add_manager_process');
+
+		Route::get('$group/boss_view_all_manager',"$controller@boss_view_all_manager")
+		->name('boss_view_all_manager');
+
+		Route::get('$group/boss_add_notification',"$controller@boss_add_notification")
+		->name('boss_add_notification');
+
+		Route::post('$group/boss_add_notification_process',"$controller@boss_add_notification_process")
+		->name('boss_add_notification_process');
+
+		Route::get('$group/boss_view_all_notification',"$controller@boss_view_all_notification")
+		->name('boss_view_all_notification');
 	});
 });
 
 
 //managers
-Route::get('manager', "ManagerController@view_all");
-Route::get('manager/view_one/{ID_manager}',"ManagerController@view_one");
+Route::get('managers', "ManagerController@mng_login")
+->name('mng_login');
+Route::post('managers/mng_login_process',"ManagerController@mng_login_process")
+->name('mng_login_process');
+Route::group(["prefix" => "managers", "middleware" => "CheckManager"], function(){
 
-Route::get('reader', "ReaderController@view_all");
-Route::get('reader/view_one/{ID_reader}',"ReaderController@view_one");
+	Route::get("managers/mng_logout","ManagerController@mng_logout")
+	->name("mng_logout");
+	
+	Route::group(["prefix" => "managers"], function(){
 
-Route::get('book', "BookController@view_all");
-Route::get('book/view_one/{ID_book}',"BookController@view_one");
+		$group      = "managers";
+		$controller = "ManagerController";
 
-Route::get('bill', "BillController@view_all");
-Route::get('bill/view_one/{ID_bill}',"BillController@view_one");
+		Route::get('$group/mng_view_accout',"$controller@mng_view_accout")
+		->name('mng_view_accout');
+
+		Route::get('$group/mng_check_password',"$controller@mng_check_password")
+		->name('mng_check_password');
+
+		Route::post('$group/mng_check_password_process',"$controller@mng_check_password_process")
+		->name('mng_check_password_process');
+
+		Route::get('$group/mng_check_password_2',"$controller@mng_check_password_2")
+		->name('mng_check_password_2');
+
+		Route::post('$group/mng_check_password_process_2',"$controller@mng_check_password_process_2")
+		->name('mng_check_password_process_2');
+
+		Route::get('$group/mng_change_password',"$controller@mng_change_password")
+		->name('mng_change_password');
+
+		Route::post('$group/mng_change_password_process',"$controller@mng_change_password_process")
+		->name('mng_change_password_process');
+
+		Route::get('$group/mng_edit_accout',"$controller@mng_edit_accout")
+		->name('mng_edit_accout');
+
+		Route::post('$group/mng_edit_accout_process',"$controller@mng_edit_accout_process")
+		->name('mng_edit_accout_process');
+
+		Route::get('$group/mng_edit_password',"$controller@mng_edit_password")
+		->name('mng_edit_password');
+
+		Route::post('$group/mng_edit_password_process',"$controller@mng_edit_password_process")
+		->name('mng_edit_password_process');
+
+		Route::get('$group/mng_logout',"$controller@mng_logout")
+		->name('mng_logout');
+
+		Route::get('$group/import_book',"$controller@import_book")
+		->name('import_book');
+
+		Route::get('$group/mng_add_category',"$controller@mng_add_category")
+		->name('add_category');
+
+		Route::get('$group/mng_add_category_process',"$controller@mng_add_category_process")
+		->name('mng_add_category_process');
+		Route::get('$group/mng_view_all_category',"$controller@mng_view_all_category")
+		->name('view_all_category');
+
+		Route::get('$group/mng_add_author',"$controller@mng_add_author")
+		->name('add_author');
+
+		Route::get('$group/mng_view_all_author',"$controller@mng_view_all_author")
+		->name('view_all_author');
+
+		Route::get('$group/mng_add_publisher',"$controller@mng_add_publisher")
+		->name('add_author');
+
+		Route::get('$group/mng_view_all_publisher',"$controller@mng_view_all_publisher")
+		->name('view_all_publisher');
+
+
+	});
+});

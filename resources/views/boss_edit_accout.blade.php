@@ -1,4 +1,4 @@
-@extends('layer.master')
+@extends('layer.master_boss')
 @section('content')
 Edit Accout <br>
 <form action="{{ route('boss_edit_accout_process') }}" method='post'>

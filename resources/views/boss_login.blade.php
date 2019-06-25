@@ -2,9 +2,6 @@
 <html>
 <head>
 </head>
-<body>
-<head>
-</head>
 
 <body>
 		<h2>Login</h2>

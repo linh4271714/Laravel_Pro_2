@@ -108,4 +108,53 @@ class BossController extends Controller
         Session::flush();
         return redirect()->route('boss_login')->with('success','Logout successful.');
     }
+
+    public function boss_add_manager()
+    {
+        return view('boss_add_manager');
+    }
+
+    public function boss_add_manager_process()
+    {
+        $boss_model = new BossModel();
+        $boss_model->userName = Request::get('userName');
+        $boss_model->email = Request::get('email');
+        $boss_model->pass = Request::get('pass');
+        $boss_model->phone = Request::get('phone');
+        $boss_model->add = Request::get('add');
+        $boss_model->boss_add_manager_process();
+        return redirect()->route('boss_view_all_manager');
+    }
+
+    public function boss_view_all_manager()
+    {
+        $boss_model = new BossModel();
+        $array_manager = $boss_model -> get_all_manager();
+
+        return view('boss_view_all_manager',compact('array_manager'));
+    }
+
+    public function boss_add_notification()
+    {
+        return view('boss_add_notification');
+    }
+
+    public function boss_add_notification_process()
+    {
+        $boss_model = new BossModel();
+        $boss_model->title = Request::get('title');
+        $boss_model->date = date("H:i:s d/m/Y");
+        $boss_model->content = Request::get('content');
+        $boss_model->boss_add_notification_process();
+
+        return redirect()->route('boss_view_all_notification');
+    }
+
+    public function boss_view_all_notification()
+    {
+        $boss_model = new BossModel();
+        $array_notification = $boss_model->get_all_notification();
+
+        return view('boss_view_all_notification',compact('array_notification'));
+    }
 }

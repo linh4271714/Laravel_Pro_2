@@ -1,4 +1,4 @@
-@extends('layer.master')
+@extends('layer.master_boss')
 @section('content')
 <table>
 	<tr>

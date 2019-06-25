@@ -1,4 +1,4 @@
-@extends('layer.master')
+@extends('layer.master_boss')
 @section('content')
 	Please Enter Your Password <br>
 	<form action="{{ route('boss_check_password_process') }}" method='post'>

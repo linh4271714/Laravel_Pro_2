@@ -7,7 +7,7 @@
     <!-- Header -->
     @include('layer.header')
 	<!-- Menu -->
-	@include('layer.menu')
+	@include('layer.menu_boss')
         <!-- Content -->
         @yield('content')
     <!-- Footer -->

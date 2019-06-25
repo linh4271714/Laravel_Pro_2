@@ -36,4 +36,29 @@ class BossModel
         DB::update("update $this->table 
             set Pass = ?", [$this->pass]);
     }
+
+    public function boss_add_manager_process()
+    {
+        DB::insert("insert into managers (Username, Email, Pass, PhoneNumber, Address) 
+            values (?, ?, ?, ?, ?)", 
+            [$this->userName, $this->email, $this->pass, $this->phone, $this->add]);
+    }
+
+    public function get_all_manager()
+    {
+        $array_manager = DB::select('select * from managers');
+        return $array_manager;
+    }
+
+    public function boss_add_notification_process()
+    {
+        DB::insert("insert into notifications (Title, Date, Content) values (?, ?, ?)", 
+            [$this->title, $this->date ,$this->content]);
+    }
+
+    public function get_all_notification()
+    {
+        $array_notification = DB::select("select * from notifications");
+        return $array_notification;
+    }
 }
