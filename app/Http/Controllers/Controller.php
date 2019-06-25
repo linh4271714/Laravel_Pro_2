@@ -9,11 +9,5 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
-    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-    public function math()
-    {
-        $a= $_POST['a'];
-        $b= $_POST['b'];
-        return $a+$b;
-    }
+    
 }
