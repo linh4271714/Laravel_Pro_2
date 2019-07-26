@@ -16,7 +16,7 @@ class Notifications extends Migration
         Schema::create('Notifications', function (Blueprint $table) {
             $table->increments('ID_post');
             $table->string('Title',50);
-            $table->date('Date');
+            $table->datetime('Date');
             $table->string('Content',1000);
         });
     }

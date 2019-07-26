@@ -134,29 +134,40 @@ Route::group(["prefix" => "managers", "middleware" => "CheckManager"], function(
 		Route::get('$group/mng_logout',"$controller@mng_logout")
 		->name('mng_logout');
 
-		Route::get('$group/import_book',"$controller@import_book")
-		->name('import_book');
-
 		Route::get('$group/mng_add_category',"$controller@mng_add_category")
 		->name('add_category');
 
 		Route::get('$group/mng_add_category_process',"$controller@mng_add_category_process")
 		->name('mng_add_category_process');
+
 		Route::get('$group/mng_view_all_category',"$controller@mng_view_all_category")
 		->name('view_all_category');
 
 		Route::get('$group/mng_add_author',"$controller@mng_add_author")
 		->name('add_author');
 
+		Route::get('$group/mng_add_author_process',"$controller@mng_add_author_process")
+		->name('mng_add_author_process');
+
 		Route::get('$group/mng_view_all_author',"$controller@mng_view_all_author")
 		->name('view_all_author');
 
 		Route::get('$group/mng_add_publisher',"$controller@mng_add_publisher")
-		->name('add_author');
+		->name('add_publisher');
+
+		Route::get('$group/mng_add_publisher_process',"$controller@mng_add_publisher_process")
+		->name('mng_add_publisher_process');
 
 		Route::get('$group/mng_view_all_publisher',"$controller@mng_view_all_publisher")
 		->name('view_all_publisher');
 
+		Route::get('$group/import_book',"$controller@import_book")
+		->name('import_book');
 
+		Route::post('$group/mng_import_book_process',"$controller@mng_import_book_process")
+		->name('mng_import_book_process');
+
+		Route::get('$group/mng_view_book_detailed/{id}',"$controller@mng_view_book_detailed")
+		->name('mng_view_book_detailed');
 	});
 });

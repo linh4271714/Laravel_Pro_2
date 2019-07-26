@@ -15,7 +15,7 @@ class FavoriteList extends Migration
     {
         Schema::create('FavoriteList', function (Blueprint $table) {
             $table->integer('ID_reader')->unsigned();
-            $table->string('ID_book',100);
+            $table->integer('ID_book')->unsigned();
             $table->primary(['ID_reader','ID_book']);
 
             $table->foreign('ID_reader')->references('ID_reader')->on('readers');

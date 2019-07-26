@@ -7,9 +7,6 @@ ACCOUT<br>
 BOOKSTORE MANAGEMENT<br>
 		<a href="{{ route('import_book') }}">Import Books</a><br>
 		<a href="">Search</a><br>
-INVOICE MANAGEMENT<br>
-		<a href="">Create Invoice</a><br>
-		<a href="">All Invoice</a><br>
 CATEGORIES MANAGEMENT<br>
 		<a href="{{ route('add_category') }}">Add Category</a><br>
 		<a href="{{ route('view_all_category') }}">All Caregory</a><br>

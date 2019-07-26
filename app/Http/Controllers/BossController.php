@@ -143,7 +143,7 @@ class BossController extends Controller
     {
         $boss_model = new BossModel();
         $boss_model->title = Request::get('title');
-        $boss_model->date = date("H:i:s d/m/Y");
+        $boss_model->date = date("Y-m-d h-i-sa");
         $boss_model->content = Request::get('content');
         $boss_model->boss_add_notification_process();
 

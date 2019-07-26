@@ -14,7 +14,7 @@ class Books extends Migration
     public function up()
     {
         Schema::create('Books', function (Blueprint $table) {
-            $table->string('ID_book',20);
+            $table->increments('ID_book');
             $table->string('Name');
             $table->integer('ID_author')->unsigned();
             $table->integer('ID_category')->unsigned();
@@ -22,13 +22,12 @@ class Books extends Migration
             $table->integer('Price');
             $table->integer('Quanlity');
             $table->string('Image');
-            $table->string('Demo',500);
+            $table->string('Demo',5000);
             $table->string('Location');
             $table->string('Damage');
-            $table->integer('BeenRead');
+            $table->integer('Status');
+            $table->date('ImportDate');
             $table->integer('ID_manager')->unsigned();
-            
-            $table->primary('ID_book');
 
             $table->foreign('ID_author')->references('ID_author')->on('authors');
             $table->foreign('ID_category')->references('ID_category')->on('categories');

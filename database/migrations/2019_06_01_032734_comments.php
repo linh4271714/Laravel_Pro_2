@@ -15,7 +15,7 @@ class Comments extends Migration
     {
         Schema::create('Comments', function (Blueprint $table) {
             $table->increments('ID_cmt');
-            $table->string('ID_book',100);
+            $table->integer('ID_book')->unsigned();
             $table->integer('ID_reader')->unsigned();
             $table->string('Content',500);
 

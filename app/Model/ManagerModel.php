@@ -56,8 +56,53 @@ class ManagerModel
         return $array_publisher;
     }
 
-    public function mng_add_category_process()
+    public function mng_add_category_process($collection)
     {
-        DB::insert('insert into categories (Category) values (?, ?, ?, ?, ?)', [1, 'Dayle'])
+        for ($i=0; $i<$collection->count() ; $i++) { 
+            DB::insert('insert into categories (Category) values (?)', [$collection[$i]]);
+        }
+    }
+
+    public function mng_add_author_process($collection)
+    {
+        for ($i=0; $i<$collection->count() ; $i++) { 
+            DB::insert('insert into authors (Name) values (?)', [$collection[$i]]);
+        }
+    }
+
+    public function mng_add_publisher_process($collection)
+    {
+        for ($i=0; $i<$collection->count() ; $i++) { 
+            DB::insert('insert into publishers (Name) values (?)', [$collection[$i]]);
+        }
+    }
+
+    public function get_max_id($id_category)
+    {
+       $array = DB::select('select count(*) from books where ID_category = ?', [$id_category]);
+       dd($array[0]);
+       return $maxID = $array[0];
+    }
+
+    public function mng_import_book_process()
+    {
+        DB::insert('insert into books (Name, ID_author, ID_category, ID_publisher, Price, Quanlity, Image, Demo, Status, ImportDate, ID_manager) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+            $this->name, $this->id_author, $this->id_category, $this->id_publisher, $this->price, 
+            $this->quanlity, $this->image, $this->demo, $this->status, $this->importDate, $this->id_manager
+        ]);
+    }
+
+    public function get_one_book()
+    {
+        return $array_book = DB::select('select 
+            ID_book, books.Name, authors.Name as Author, categories.Category as Category, 
+            publishers.Name as Publisher, Price, Quanlity, Image, Demo, Location, Damage, Status, ImportDate, 
+            managers.Username as Manager
+            from books 
+            inner join authors on books.ID_author = authors.ID_author
+            inner join categories on books.ID_category = categories.ID_category
+            inner join publishers on books.ID_publisher = publishers.ID_publisher
+            inner join managers on books.ID_manager = managers.ID_manager
+            where ID_book = ?',[$this->id_book]);
     }
 }
