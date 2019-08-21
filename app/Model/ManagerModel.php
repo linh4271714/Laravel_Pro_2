@@ -92,7 +92,7 @@ class ManagerModel
         ]);
     }
 
-    public function get_one_book()
+    public function get_newest_book()
     {
         return $array_book = DB::select('select 
             ID_book, books.Name, authors.Name as Author, categories.Category as Category, 
@@ -103,6 +103,11 @@ class ManagerModel
             inner join categories on books.ID_category = categories.ID_category
             inner join publishers on books.ID_publisher = publishers.ID_publisher
             inner join managers on books.ID_manager = managers.ID_manager
-            where ID_book = ?',[$this->id_book]);
+            order by ID_book desc limit 1');
+    }
+
+    public function get_all_name_book()
+    {
+        return $array_name = DB::select('select Name from books order by ID_book desc');
     }
 }

@@ -243,14 +243,22 @@ class ManagerController extends Controller
         $mng_model->id_manager   = Session::get('ID_manager');
 
         $mng_model->mng_import_book_process();
+        return redirect()->route('mng_view_book_imported');
     }
 
-    public function mng_view_book_detailed($id)
+    public function mng_view_book_imported()
     {
         $mng_model               = new ManagerModel();
-        $mng_model->id_book      = $id;
-        $array_book              = $mng_model->get_one_book();
-        return view('mng_view_book_detailed',
-            compact('array_book'));
+        $array_book = $mng_model->get_newest_book();
+        return view('mng_view_book_imported',compact('array_book'));
+    }
+
+    public function mng_add_new_bill()
+    {
+        $mng_model               = new ManagerModel();
+        $array_name = $mng_model->get_all_name_book();
+        $array_author = $mng_model->get_all_author();
+        $array_publisher = $mng_model->get_all_publisher();
+        return view('mng_view_add_new_bill',compact('array_publisher', 'array_author', 'array_name'));
     }
 }

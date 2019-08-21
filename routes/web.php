@@ -167,7 +167,10 @@ Route::group(["prefix" => "managers", "middleware" => "CheckManager"], function(
 		Route::post('$group/mng_import_book_process',"$controller@mng_import_book_process")
 		->name('mng_import_book_process');
 
-		Route::get('$group/mng_view_book_detailed/{id}',"$controller@mng_view_book_detailed")
-		->name('mng_view_book_detailed');
+		Route::get('$group/mng_view_book_imported',"$controller@mng_view_book_imported")
+		->name('mng_view_book_imported');
+
+		Route::get('$group/mng_add_new_bill',"$controller@mng_add_new_bill")
+		->name('mng_add_new_bill');
 	});
 });

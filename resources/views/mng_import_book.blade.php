@@ -17,14 +17,14 @@
 					</select><br>
 				New publisher? <a href="{{ route('add_publisher') }}">Insert it!</a><br>
 
-			Book Name * <input type="text" name="name"><br>
-
 			Author * <select name="author">
 						@foreach($array_author as $au)
 							<option value="{{$au->ID_author}}">{{$au->Name}}</option>
 						@endforeach
 					</select><br>
 				New author? <a href="{{ route('add_author') }}">Insert it!</a><br>
+
+			Book Name * <input type="text" name="name"><br>
 
 			Price * <input type="number" name="price"><br>
 
