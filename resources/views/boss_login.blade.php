@@ -1,12 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="../public/css/login1.css">
+	<script src="../public/js/login.js"></script>
 </head>
 
 <body>
-		<h2>Login</h2>
-		<form action="{{ route('boss_login_process') }}" method="post">
-			{{csrf_field()}}
+	<form action="{{ route('boss_login_process') }}" method="post">		
+  <h2><span class="entypo-login"><i class="fa fa-sign-in"></i></span> Login</h2>
+  <button class="submit"><span class="entypo-key"><i class="fa fa-lock"></i></span></button>
+  <span class="entypo-user inputUserIcon">
+     <i class="fa fa-user"></i>
+   </span>
+  <input type="text" class="user" name="email" placeholder="Email"/>
+  <span class="entypo-key inputPassIcon">
+     <i class="fa fa-key"></i>
+   </span>
+  <input type="password" class="pass" name="pass" placeholder="Password"/>
+  {{csrf_field()}}
 
 				@if (Session::has('error'))
                     <span style="color: red">
@@ -18,13 +29,6 @@
                         {{Session::get('success')}}
                     </span>
                 @endif
-				<br>
-				<input type="text" name="email" placeholder="Email"><br>
-				<input type="password" name="pass" placeholder="Password"><br>
-
-				<button>Login</button>
-				
-		</form><br>
-		<br>
+</form>
 </body>
 </html>

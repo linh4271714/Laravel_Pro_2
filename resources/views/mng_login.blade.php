@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css" href="../public/css/login.css">
 </head>
 
 <body>
-		<h2>Login</h2>
-		<form action="{{ route('mng_login_process') }}" method="post">
-			{{csrf_field()}} 
+	<div class="body"></div>
+		<div class="grad"></div>
+		<div class="header">
+			<div>My<span>Library</span></div>
+		</div>
+		<br>
+		<div class="login">
+			<form action="{{ route('mng_login_process') }}" method="post">
+		{{csrf_field()}} 
 
 				@if (Session::has('error'))
                     <span style="color: red">
@@ -17,14 +24,11 @@
                     <span style="color: green">
                         {{Session::get('success')}}
                     </span>
-                @endif
-				<br>
-				<input type="text" name="email" placeholder="Email"><br>
-				<input type="password" name="pass" placeholder="Password"><br>
-
-				<button>Login</button>
-				
-		</form><br>
-		<br>
+                @endif		
+			<input type="text" placeholder="Email" name="email"><br>
+			<input type="password" placeholder="Password" name="pass"><br>
+			<input type="submit" value="Sign In">
+		</form>
+		</div>
 </body>
 </html>

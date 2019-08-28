@@ -1,19 +1,36 @@
-	<div style="width: 15%; background-color: yellow; text-align: center;" align="left">
-			STATISTICAL<br>
-		<a href="">Book Store</a><br>
-		<a href="">Most Read</a><br>
-		<a href="">Read At Least</a><br>
-		<a href="">Monthly Sales</a><br>
-			MANAGERS<br>
-		<a href="{{ route('boss_view_all_manager') }}">All Managers</a><br>
-		<a href="{{ route('boss_add_manager') }}">Add manager</a><br>
-			NOTIFICATION<br>
-		<a href="{{ route('boss_add_notification') }}">Add Notification</a><br>
-		<a href="{{ route('boss_view_all_notification') }}">Older Notifications</a><br>
-		<a href="">Change Rate</a><br>
-			ACCOUT<br>
-		<a href="{{ route('boss_view_accout') }}">View Accout</a><br>
-		<a href="{{ route('boss_check_password') }}">Edit Accout</a><br>
-		<a href="{{ route('boss_check_password_2') }}">Change Password</a><br>
-		<a href="{{ route('boss_logout') }}">Log Out</a><br>
-	</div>
+<nav>
+  <ul class="primary-nav">
+    <li class="primary-nav__item dropdown"><a href="#0"><i class="fa fa-home"></i> STATISTICAL</a>
+	<ul class="secondary-nav">
+		<li class="secondary-nav__item"><a href="#0">Book Store</a></li>
+		<li class="secondary-nav__item"><a href="#0">Most Read</a></li>
+		<li class="secondary-nav__item"><a href="#0">Read At Least</a></li>
+		<li class="secondary-nav__item"><a href="#0">Monthly Sales</a></li>
+	</ul>
+    </li>
+    <li class="primary-nav__item dropdown">
+      <a class="dropdown__btn" href="#0"><i class="fas fa-users"></i> MANAGERS <i class="chevron fas fa-chevron-down"></i></a>
+      <ul class="secondary-nav">
+        <li class="secondary-nav__item"><a href="{{ route('boss_view_all_manager') }}">All Managers</a></li>
+        <li class="secondary-nav__item"><a href="{{ route('boss_add_manager') }}">Add Manager</a></li>
+      </ul>
+    </li>
+    <li class="primary-nav__item dropdown">
+      <a class="dropdown__btn" href="#0"><i class="fas fa-tools"></i> NOTIFICATION <i class="chevron fas fa-chevron-down"></i></a>
+      <ul class="secondary-nav">
+        <li class="secondary-nav__item"><a href="{{ route('boss_add_notification') }}">Add Notification</a></li>
+        <li class="secondary-nav__item"><a href="{{ route('boss_view_all_notification') }}">Older Notifications</a></li>
+        <li class="secondary-nav__item"><a href="#">Change Rate</a></li>
+      </ul>
+    </li>
+    <li class="primary-nav__item dropdown">
+      <a class="dropdown__btn" href="#0"><i class="fas fa-tools"></i> ACCOUNT <i class="chevron fas fa-chevron-down"></i></a>
+      <ul class="secondary-nav">
+        <li class="secondary-nav__item"><a href="{{ route('boss_view_accout') }}">View Accout</a></li>
+        <li class="secondary-nav__item"><a href="{{ route('boss_check_password') }}">Edit Accout</a></li>
+        <li class="secondary-nav__item"><a href="{{ route('boss_check_password_2') }}">Change Password</a></li>
+        <li class="secondary-nav__item"><a href="{{ route('boss_logout') }}">Log Out</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>		
