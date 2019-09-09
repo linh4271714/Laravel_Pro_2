@@ -272,14 +272,14 @@ class ManagerController extends Controller
         $number3 = Request::get('number3');
 
         $collection= collect([$book1, $book2, $book3]);
-        for ($i=0; $i <6 ; $i++) { 
+        for ($i=0; $i <3 ; $i++) { 
             if($collection[$i]==''){
                 unset($collection[$i]);
             }
         }
         $collection= $collection->values();
         $collection2= collect([$a, $b, $c, $d, $e, $publisher]);
-        for ($i=0; $i <6 ; $i++) { 
+        for ($i=0; $i <3 ; $i++) { 
             if($collection2[$i]==''){
                 unset($collection2[$i]);
             }

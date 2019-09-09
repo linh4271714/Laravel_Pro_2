@@ -5,7 +5,7 @@ BILL MANAGEMENT<br>
 		<a href="">Search</a>
 BOOKSTORE MANAGEMENT<br>
 		<a href="{{ route('import_book') }}">Import Books</a><br>
-		<a href="{{ route('mng_search') }}">Search</a><br>
+		<a href="">Search</a><br>
 CATEGORIES MANAGEMENT<br>
 		<a href="{{ route('add_category') }}">Add Category</a><br>
 		<a href="{{ route('view_all_category') }}">All Caregory</a><br>
