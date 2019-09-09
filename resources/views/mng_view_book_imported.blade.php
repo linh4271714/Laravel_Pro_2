@@ -6,7 +6,8 @@ Chi tiết:
 <br>
 	@foreach($array_book as $book)
 		<font color="red"> {{$book->Name}} </font><br>
-		<img src="../../public/image/{{$book->Image}}"> <br>
+		<img src="/public/image/{{ $book->Image }}" 
+			alt="de_men_phieu_luu_ky-To_Hoai.jpg"> <br>
 		<font color="green">Author</font> {{$book->Author}}<br>
 
  		<font color="green">Publisher</font> {{$book->Publisher}}<br>

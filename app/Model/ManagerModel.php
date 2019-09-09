@@ -28,7 +28,7 @@ class ManagerModel
     public function mng_edit_accout_process()
     {
         DB::update("update $this->table
-        set Username = ?, Email = ?, PhoneNumber = ?. Address = ? where ID_manager = ?",
+        set Username = ?, Email = ?, PhoneNumber = ?, Address = ? where ID_manager = ?",
         [$this->userName, $this->email, $this->phone, $this->add, $this->ID]);
     }
 
@@ -40,19 +40,19 @@ class ManagerModel
 
     public function get_all_author()
     {
-        $array_author = DB::select('select * from authors');
+        $array_author = DB::select('select * from authors order by Name');
         return $array_author;
     }
 
     public function get_all_category()
     {
-        $array_category = DB::select('select * from categories');
+        $array_category = DB::select('select * from categories order by Category');
         return $array_category;
     }
 
     public function get_all_publisher()
     {
-        $array_publisher = DB::select('select * from publishers');
+        $array_publisher = DB::select('select * from publishers order by Name');
         return $array_publisher;
     }
 
@@ -106,8 +106,33 @@ class ManagerModel
             order by ID_book desc limit 1');
     }
 
-    public function get_all_name_book()
+    public function get_all_book_for_bill()
     {
-        return $array_name = DB::select('select Name from books order by ID_book desc');
+        return $array_name = DB::select('select *, books.Name as nameBook, authors.Name as nameAuthor, publishers.Name as namePublisher
+            from books join authors on books.ID_author = authors.ID_author
+            join publishers on books.ID_publisher = publishers.ID_publisher
+            order by ID_book');
+    }
+
+    public function get_all_book()
+    {
+        return $array_book = DB::select('select Image,
+            books.Name as bookname, authors.Name as authorname, publishers.Name as publishername 
+            from books join authors on books.ID_author = authors.ID_author
+            join publishers on books.ID_publisher = publishers.ID_publisher
+            order by ID_book desc limit 10');
+    }
+
+    public function search_book()
+    {
+        $name = $this->name;
+        $author = $this->author;
+        $publisher = $this->publisher;
+        return $array_result = DB::select("select Image,
+            books.Name as bookname, authors.Name as authorname, publishers.Name as publishername 
+            from books join authors on books.ID_author = authors.ID_author
+            join publishers on books.ID_publisher = publishers.ID_publisher
+            where books.Name like '%$name%' and authors.Name like '%$author%' and publishers.Name like '%$publisher%'
+            order by ID_book desc");
     }
 }

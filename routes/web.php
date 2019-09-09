@@ -167,8 +167,11 @@ Route::group(["prefix" => "managers", "middleware" => "CheckManager"], function(
 		Route::post('$group/mng_import_book_process',"$controller@mng_import_book_process")
 		->name('mng_import_book_process');
 
-		Route::get('$group/mng_view_book_imported',"$controller@mng_view_book_imported")
-		->name('mng_view_book_imported');
+		Route::get('$group/mng_search', "$controller@mng_search")
+		->name('mng_search');
+
+		Route::get('$group/mng_search_process', "$controller@mng_search_process")
+		->name('mng_search_process');
 
 		Route::get('$group/mng_add_new_bill',"$controller@mng_add_new_bill")
 		->name('mng_add_new_bill');

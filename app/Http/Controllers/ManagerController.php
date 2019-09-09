@@ -243,22 +243,37 @@ class ManagerController extends Controller
         $mng_model->id_manager   = Session::get('ID_manager');
 
         $mng_model->mng_import_book_process();
-        return redirect()->route('mng_view_book_imported');
-    }
-
-    public function mng_view_book_imported()
-    {
-        $mng_model               = new ManagerModel();
-        $array_book = $mng_model->get_newest_book();
-        return view('mng_view_book_imported',compact('array_book'));
+        return redirect()->route('import_book')->with('success','The book was successfully added.');;
     }
 
     public function mng_add_new_bill()
     {
         $mng_model               = new ManagerModel();
-        $array_name = $mng_model->get_all_name_book();
+        $array_name = $mng_model->get_all_book_for_bill();
         $array_author = $mng_model->get_all_author();
         $array_publisher = $mng_model->get_all_publisher();
         return view('mng_view_add_new_bill',compact('array_publisher', 'array_author', 'array_name'));
+    }
+
+    public function mng_search()
+    {
+        $mng_model = new ManagerModel();
+        $array_book = $mng_model->get_all_book();
+        return view('mng_search',compact('array_book'));
+    }
+    public function mng_search_process()
+    {
+        $mng_model = new ManagerModel();
+
+        $mng_model->author  = Request::get('name_author');
+        $mng_model->publisher = Request::get('name_publisher');
+        $mng_model->name      = Request::get('name_book');
+
+        $array_result= $mng_model->search_book();
+        if(count($array_result)==0)
+        {
+            return view('mng_search_result_0');
+        }
+        return view('mng_search_result', compact('array_result'));
     }
 }
