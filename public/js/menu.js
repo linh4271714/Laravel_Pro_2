@@ -1,2 +1,66 @@
+// add event handler realization
+var addEvent = (function () {
+  if (document.addEventListener) {
+    return function (el, type, fn) {
+      if (el && el.nodeName || el === window) {
+        el.addEventListener(type, fn, false);
+      } else if (el && el.length) {
+        for (var i = 0; i < el.length; i++) {
+          addEvent(el[i], type, fn);
+        }
+      }
+    };
+  } else {
+    return function (el, type, fn) {
+      if (el && el.nodeName || el === window) {
+        el.attachEvent('on' + type, function () { return fn.call(el, window.event); });
+      } else if (el && el.length) {
+        for (var i = 0; i < el.length; i++) {
+          addEvent(el[i], type, fn);
+        }
+      }
+    };
+  }
+})();
 
-eval(function(p,a,c,k,e,r){e=function(c){return c.toString(a)};if(!''.replace(/^/,String)){while(c--)r[e(c)]=k[c]||e(c);k=[function(e){return r[e]}];e=function(){return'\\w+'};c=1};while(c--)if(k[c])p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c]);return p}('$(o).i(4(){$("p").q(\'<r t="u" m="9/3-6-0.9"/>\');s a="";$("#3-0").c(4(){$("#3-6-0 #0").g()});$(h).f(4(){$("#3-6-0 #0").j("k")});$("#0 a.l").c(4(){d(a!=""){$("#"+a).n("a").e("7");$("#"+a).b("8")};d(a==$(1).5("2")){$("#"+$(1).5("2")).b("8");$(1).e("7");a=""}v{$("#"+$(1).5("2")).w("8");a=$(1).5("2");$(1).x("7")};y z})});',36,36,'menu|this|name|responsive|function|attr|admin|downarrow|fast|css||slideUp|click|if|removeClass|resize|slideToggle|window|ready|removeAttr|style|submenu|href|prev|document|head|append|link|var|rel|stylesheet|else|slideDown|addClass|return|false'.split('|'),0,{}))
+// variables
+var aLoops = []; // sound loops
+
+// initialization
+addEvent(window, 'load', function (event) {
+
+    // load music files
+    aLoops[0] = new Audio('media/background.ogg');
+    aLoops[0].volume = 0.3;
+    aLoops[1] = new Audio('media/button.ogg');
+    aLoops[1].volume = 1.0;
+    aLoops[2] = new Audio('media/button_click.ogg');
+    aLoops[2].volume = 1.0;
+
+    aLoops[0].addEventListener('ended', function() { // loop background sound
+        this.currentTime = 0;
+        this.play();
+    }, false);
+    aLoops[0].play();
+});
+
+// all the buttons
+var aBtns = document.querySelectorAll('#nav li');
+
+// onmouseover event handler
+addEvent(aBtns, 'mouseover', function (event) {
+    aLoops[1].currentTime = 0;
+    aLoops[1].play(); // play click sound
+});
+
+// onmouseout event handler
+addEvent(aBtns, 'mouseout', function (event) {
+    aLoops[1].currentTime = 0;
+    aLoops[1].pause(); // play click sound
+});
+
+// onclick event handler
+addEvent(aBtns, 'click', function (event) {
+    aLoops[2].currentTime = 0;
+    aLoops[2].play(); // play click sound
+});
