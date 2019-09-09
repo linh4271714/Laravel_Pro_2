@@ -143,7 +143,7 @@ class BossController extends Controller
     {
         $boss_model = new BossModel();
         $boss_model->title = Request::get('title');
-        $boss_model->date = date("Y-m-d h-i-sa");
+        $boss_model->date = date("Y-m-d");
         $boss_model->content = Request::get('content');
         $boss_model->boss_add_notification_process();
 
@@ -156,5 +156,27 @@ class BossController extends Controller
         $array_notification = $boss_model->get_all_notification();
 
         return view('boss_view_all_notification',compact('array_notification'));
+    }
+
+    public function boss_search()
+    {
+        $mng_model = new BossModel();
+        $array_book = $mng_model->get_all_book();
+        return view('boss_search',compact('array_book'));
+    }
+    public function boss_search_process()
+    {
+        $mng_model = new BossModel();
+
+        $mng_model->author  = Request::get('name_author');
+        $mng_model->publisher = Request::get('name_publisher');
+        $mng_model->name      = Request::get('name_book');
+
+        $array_result= $mng_model->search_book();
+        if(count($array_result)==0)
+        {
+            return view('boss_search_result_0');
+        }
+        return view('boss_search_result', compact('array_result'));
     }
 }

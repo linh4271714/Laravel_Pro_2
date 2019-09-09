@@ -1,5 +1,6 @@
 @extends('layer.master_boss')
 @section('content')
+<div id="view">
 <form action="{{ route('boss_add_manager_process') }}">
 {{csrf_field()}} 
 Username: <input type="text" name="userName">
@@ -9,4 +10,5 @@ Phone Number: <input type="number" name="phone">
 Address: <input type="text" name="add">
 <button>Add</button>
 </form>
+</div>
 @endsection

@@ -255,6 +255,39 @@ class ManagerController extends Controller
         return view('mng_view_add_new_bill',compact('array_publisher', 'array_author', 'array_name'));
     }
 
+    public function mng_add_new_bill_process()
+    {
+        $mng_model               = new ManagerModel();
+        $reader = Request::get('customer');
+        $idreader = Request::get('ID');
+        $idlender = Session::get('ID_manager');
+        $borrowdate = date("Y-m-d");
+        $total = Request::get('');
+        $status = "Be borrowing";
+        $id_book1 = Request::get('book1');
+        $id_book2 = Request::get('book2');
+        $id_book3 = Request::get('book3');
+        $number1 = Request::get('number1');
+        $number2 = Request::get('number2');
+        $number3 = Request::get('number3');
+
+        $collection= collect([$book1, $book2, $book3]);
+        for ($i=0; $i <6 ; $i++) { 
+            if($collection[$i]==''){
+                unset($collection[$i]);
+            }
+        }
+        $collection= $collection->values();
+        $collection2= collect([$a, $b, $c, $d, $e, $publisher]);
+        for ($i=0; $i <6 ; $i++) { 
+            if($collection2[$i]==''){
+                unset($collection2[$i]);
+            }
+        }
+        $collection2= $collection2->values();
+        $mng_model->mng_add_new_bill_process($collection, $collection2);
+    }
+
     public function mng_search()
     {
         $mng_model = new ManagerModel();

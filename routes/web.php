@@ -79,6 +79,12 @@ Route::group(["prefix" => "boss", "middleware" => "CheckBoss"], function(){
 
 		Route::get('$group/boss_view_all_notification',"$controller@boss_view_all_notification")
 		->name('boss_view_all_notification');
+
+		Route::get('$group/boss_search', "$controller@boss_search")
+		->name('boss_search');
+
+		Route::get('$group/boss_search_process', "$controller@boss_search_process")
+		->name('boss_search_process');
 	});
 });
 
@@ -175,5 +181,8 @@ Route::group(["prefix" => "managers", "middleware" => "CheckManager"], function(
 
 		Route::get('$group/mng_add_new_bill',"$controller@mng_add_new_bill")
 		->name('mng_add_new_bill');
+
+		Route::get('$group/mng_add_new_bill_process',"$controller@mng_add_new_bill_process")
+		->name('mng_add_new_bill_process');
 	});
 });

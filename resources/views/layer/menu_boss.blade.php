@@ -2,8 +2,10 @@
   <ul class="primary-nav">
     <li class="primary-nav__item dropdown"><a href="#0"><i class="fa fa-home"></i> STATISTICAL</a>
 	<ul class="secondary-nav">
-		<li class="secondary-nav__item"><a href="#0">Book Store</a></li>
-		<li class="secondary-nav__item"><a href="#0">Thông kê</a></li>
+		<li class="secondary-nav__item"><a href="{{ route('boss_search') }}">Book Store</a></li>
+		<li class="secondary-nav__item"><a href="#0">Most Read</a></li>
+		<li class="secondary-nav__item"><a href="#0">Read At Least</a></li>
+		<li class="secondary-nav__item"><a href="#0">Monthly Sales</a></li>
 	</ul>
     </li>
     <li class="primary-nav__item dropdown">

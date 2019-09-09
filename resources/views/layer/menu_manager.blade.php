@@ -1,8 +1,8 @@
 <div style="width: 15%; background-color: yellow; text-align: center;" align="left">
 BILL MANAGEMENT<br>
-		<a href="{{ route('mng_add_new_bill') }}">Add new bill</a><br>
-		<a href="">Receive the book</a><br>
-		<a href="">Search</a><br>
+		<a href="{{ route('mng_add_new_bill') }}">Add new bill</a>
+		<a href="">Receive the book</a>
+		<a href="">Search</a>
 BOOKSTORE MANAGEMENT<br>
 		<a href="{{ route('import_book') }}">Import Books</a><br>
 		<a href="{{ route('mng_search') }}">Search</a><br>

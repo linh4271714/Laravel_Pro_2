@@ -61,4 +61,28 @@ class BossModel
         $array_notification = DB::select("select * from notifications");
         return $array_notification;
     }
+
+    public function get_all_book()
+    {
+        return $array_book = DB::select('select Image, Price, Quanlity, Location, ImportDate, Username,
+            books.Name as bookname, authors.Name as authorname, publishers.Name as publishername 
+            from books join authors on books.ID_author = authors.ID_author
+            join publishers on books.ID_publisher = publishers.ID_publisher
+            join managers on books.ID_manager = managers.ID_manager
+            order by ID_book desc limit 10');
+    }
+
+    public function search_book()
+    {
+        $name = $this->name;
+        $author = $this->author;
+        $publisher = $this->publisher;
+        return $array_result = DB::select("select Image, Price, Quanlity, Location, ImportDate, Username,
+            books.Name as bookname, authors.Name as authorname, publishers.Name as publishername 
+            from books join authors on books.ID_author = authors.ID_author
+            join publishers on books.ID_publisher = publishers.ID_publisher
+            join managers on books.ID_manager = managers.ID_manager
+            where books.Name like '%$name%' and authors.Name like '%$author%' and publishers.Name like '%$publisher%'
+            order by ID_book desc");
+    }
 }

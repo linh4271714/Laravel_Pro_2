@@ -1,11 +1,12 @@
 @extends('layer.master_boss')
 @section('content')
-<table>
-	<tr>
-		<th>User Name</th>
-		<th>Email</th>
-		<th>Phone Number</th>
-		<th>Address</th>
+<div id="view">
+<table class="style_table">
+	<tr class="style_tr1">
+		<th class="style_th">User Name</th>
+		<th class="style_th">Email</th>
+		<th class="style_th">Phone Number</th>
+		<th class="style_th">Address</th>
 	</tr>
 	@foreach ($array_manager as $mng)
 		<tr>
@@ -16,4 +17,5 @@
 		</tr>
 	@endforeach
 </table>
+</div>
 @endsection
