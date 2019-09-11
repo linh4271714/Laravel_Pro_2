@@ -146,4 +146,11 @@ class ManagerModel
             ]);
         }
     }
+
+    public function get_price_book()
+    {
+        $sum = DB::select('select sum(Price) from books 
+            where ID_book = ID_book_1 or ID_book = ID_book_2 or ID_book = ID_book_3');
+        return $deposit = $sum/2;
+    }
 }

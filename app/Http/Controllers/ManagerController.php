@@ -254,7 +254,14 @@ class ManagerController extends Controller
         $array_publisher = $mng_model->get_all_publisher();
         return view('mng_view_add_new_bill',compact('array_publisher', 'array_author', 'array_name'));
     }
-
+    public function mng_add_new_bill_total()
+    {
+        $mng_model = new ManagerModel();
+        $ID_book_1 = $mng_model->ID_book_1  = Request::get('book1');
+        $ID_book_2 = $mng_model->ID_book_2  = Request::get('book2');
+        $ID_book_3 = $mng_model->ID_book_3  = Request::get('book3');
+        $deposit = $mng_model->get_price_book();
+    }
     public function mng_add_new_bill_process()
     {
         $mng_model               = new ManagerModel();
