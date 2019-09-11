@@ -250,7 +250,7 @@ header .stuts span {
     	<div class="main-content" style="border: 1px dotted pink">@yield('content')</div>       
     </div>
         
-<script>
+<script language="javascript">
     	// add event handler realization
 var addEvent = (function () {
   if (document.addEventListener) {

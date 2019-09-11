@@ -39,7 +39,6 @@
                 document.getElementById("more").style.display = 'block';
                 document.getElementById("less").style.display = 'none';
             };
- 
         </script>
 	@endforeach
 @endsection
