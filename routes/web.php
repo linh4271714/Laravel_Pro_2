@@ -184,5 +184,8 @@ Route::group(["prefix" => "managers", "middleware" => "CheckManager"], function(
 
 		Route::get('$group/mng_add_new_bill_process',"$controller@mng_add_new_bill_process")
 		->name('mng_add_new_bill_process');
+
+		Route::get('$group/mng_add_new_bill_total',"$controller@mng_add_new_bill_total")
+		->name('mng_add_new_bill_total');
 	});
 });
