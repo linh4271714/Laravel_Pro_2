@@ -4,11 +4,8 @@
 	<form action="{{ route('mng_add_new_bill_process') }}" id="formAddNewBill">
 		{{csrf_field()}}
 		Name of Customer: <input type="text" name="customer"> <br>
-<<<<<<< HEAD
 		Number of ID: <input type="text" name="ID"><br>
-=======
 		Number of ID: <input type="number" name="ID"><br>
->>>>>>> a301c7fe077e177bf8667e4a6ef5b1fbe350ae57
 		The books registered to borrow (max is 3) include: <br>
 		<div id="1">
 			1/
@@ -43,7 +40,6 @@
 						{{$name->nameBook}} - {{$name->nameAuthor}} - {{$name->namePublisher}}
 					</option>
 				@endforeach
-<<<<<<< HEAD
 			</select>
 			* <input type="number" name="number3">
         </div>
@@ -89,11 +85,4 @@
         }
         processChangeValue();
     </script>
-=======
-			</select>		
-			* <input type="number" name="number3">
-		</div>
-		<button type="submit">Check total</button>
-	</form>
->>>>>>> a301c7fe077e177bf8667e4a6ef5b1fbe350ae57
 @endsection
