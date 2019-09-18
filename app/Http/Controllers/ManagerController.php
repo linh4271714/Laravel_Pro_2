@@ -309,7 +309,7 @@ class ManagerController extends Controller
 
         $mng_model->newest_bill = $mng_model->select_newest_bill();
         $mng_model->mng_add_detail_invoice($collection3, $collection2);
-        return view('mng_view_add_new_bill');
+        return redirect()->route('mng_add_new_bill');
     }
 
     public function mng_search()

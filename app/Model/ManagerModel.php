@@ -150,9 +150,9 @@ class ManagerModel
     }
 
     public function mng_add_detail_invoice($collection3, $collection2){
-        for ($i=0; $i<$collection2->count() ; $i++) { 
+        for ($i=0; $i<$collection2->count(); $i++) { 
             DB::insert('insert into detailedinvoice (ID_bill, ID_book, Amount) values (?, ?, ?)', [
-                $this->newest_bill, $collection3[$i], $collection2[$i]
+                $this->newest_bill[0]->maxbill, $collection3[$i], $collection2[$i]
             ]);
         }
     }

@@ -108,7 +108,7 @@
         	</h4>
     	</div>
     	<br><br><br>
-		<div><button type="submit" onsubmit="alert('Create invoice successfully!')">Submit</button></div>
+		<div><button type="submit" onsubmit ="alert('Create invoice successfully!')" >Submit</button></div>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
