@@ -149,10 +149,10 @@ class ManagerModel
         return DB::select('select max(ID_bill) as maxbill from bills');
     }
 
-    public function mng_add_detail_invoice(){
-        for ($i=0; $i<$collection->count() ; $i++) { 
-            DB::insert('insert into detailedinvoice (ID_book, Amount) values (?, ?, ?)', [
-                $collection[$i], $collection2[$i], $collection3[$i]
+    public function mng_add_detail_invoice($collection3, $collection2){
+        for ($i=0; $i<$collection2->count() ; $i++) { 
+            DB::insert('insert into detailedinvoice (ID_bill, ID_book, Amount) values (?, ?, ?)', [
+                $this->newest_bill, $collection3[$i], $collection2[$i]
             ]);
         }
     }

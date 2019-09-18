@@ -25,7 +25,7 @@ class ManagerController extends Controller
         if(count($mng_array)==1){
             Session::put('ID_manager',$mng_array[0]->ID_manager);
 
-            return redirect()->route('mng_view_accout');
+            return redirect()->route('mng_add_new_bill');
         }
         return redirect()->route('mng_login')->with('error','Login information is incorrect.');
     }
@@ -108,7 +108,7 @@ class ManagerController extends Controller
         $mng_model->ID   = Session::get('ID_manager');
         $mng_model->pass = Request::get('pass');
         $mng_model->mng_change_password_process();
-        return redirect()->route('boss_view_accout')->with('success','Change successful!');
+        return redirect()->route('mng_view_accout')->with('success','Change successful!');
     }
 
     public function mng_logout()
@@ -140,7 +140,7 @@ class ManagerController extends Controller
         $collection= $collection->values();
         $mng_model->mng_add_category_process($collection);
 
-        return redirect()->route('view_all_category');
+        return redirect()->route('add_category');
     }
 
     public function mng_view_all_category()
@@ -174,7 +174,7 @@ class ManagerController extends Controller
         $collection= $collection->values();
         $mng_model->mng_add_author_process($collection);
 
-        return redirect()->route('view_all_author');
+        return redirect()->route('add_author');
     }
 
     public function mng_view_all_author()
@@ -208,7 +208,7 @@ class ManagerController extends Controller
         $collection= $collection->values();
         $mng_model->mng_add_publisher_process($collection);
 
-        return redirect()->route('view_all_publisher');
+        return redirect()->route('add_publisher');
     }
 
     public function mng_view_all_publisher()
@@ -230,13 +230,21 @@ class ManagerController extends Controller
     public function mng_import_book_process()
     {
         $mng_model               = new ManagerModel();
+        $urlImg="";
+        if (Request::hasFile('image')) {
+            $image = Request::file('image');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('images');
+            $image->move($destinationPath, $name);
+            $urlImg='images/'.$name;
+        }
         $mng_model->id_category  = Request::get('category');
         $mng_model->id_publisher = Request::get('publisher');
         $mng_model->name         = Request::get('name');
         $mng_model->id_author    = Request::get('author');
         $mng_model->price        = Request::get('price');
         $mng_model->quanlity     = Request::get('quanlity');
-        $mng_model->image        = Request::get('image');
+        $mng_model->image        = $urlImg;
         $mng_model->demo         = Request::get('demo');
         $mng_model->status       = Request::get('status');
         $mng_model->importDate   = date("Y-m-d");
@@ -272,16 +280,15 @@ class ManagerController extends Controller
         $mng_model->borrowdate = date("Y-m-d");
         $mng_model->total = Request::get('total');
         $mng_model->status = "Be borrowing";
-        $id_book1 = $mng_model->id_book1 = Request::get('book1');
-        $id_book2 = $mng_model->id_book2 = Request::get('book2');
-        $id_book3 = $mng_model->id_book3 = Request::get('book3');
-        $number1 = $mng_model->number1 = Request::get('number1');
-        $number2 = $mng_model->number2 = Request::get('number2');
-        $number3 = $mng_model->number3 = Request::get('number3');
+        $id_book1 =  Request::get('book1');
+        $id_book2 =  Request::get('book2');
+        $id_book3 =  Request::get('book3');
+        $number1 =  Request::get('number1');
+        $number2 =  Request::get('number2');
+        $number3 =  Request::get('number3');
 
-        $collection3= collect([$id_book1, $id_book2, $id_book3]);
-        $collection2= collect([$number1, $number2, $number3]);
-        print_r($collection3);
+        $collection3 = collect([$id_book1, $id_book2, $id_book3]);
+        $collection2 = collect([$number1, $number2, $number3]);
         if(isset($collection2) and isset($collection3)){
             for ($i=0; $i <3 ; $i++) { 
                 if($collection3[$i]==""){
@@ -301,7 +308,6 @@ class ManagerController extends Controller
         $mng_model->mng_add_new_bill_process();
 
         $mng_model->newest_bill = $mng_model->select_newest_bill();
-
         $mng_model->mng_add_detail_invoice($collection3, $collection2);
         return view('mng_view_add_new_bill');
     }

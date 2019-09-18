@@ -1,50 +1,114 @@
 @extends('layer.master_mng')
 @section('content')
-	NEW BILL <br>
+<style type="text/css">
+	#addnewbill {
+		height: 360px; width: 50%;
+		background-color: rgba(255, 0, 0, 0.7);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+		z-index: 1;
+		position: fixed;
+		top: 90px;
+		left: 430px;
+	}
+	table#customer{
+		width: 70%;
+		height: 100px;
+	}
+	input.customer {
+		height: 25px;
+		width: 70%;
+	}
+	select.book{
+		height: 25px;
+		width: 300px;
+	}
+	input.amount {
+		height: 20px;
+		width: 50px;
+	}
+	#customer {
+		color: white;
+	}
+	#list {
+		color: white;
+		float: left;
+		width: 70%;
+	}
+	#deposit {
+		color: white;
+		float: left;
+		width: 20%;
+	}
+	button {
+		height: 30px;
+		width: 130px;
+	}
+	button:hover {
+		background-color: #D7B830;
+	}
+</style>
+<center>
+<div id="addnewbill">
+	<br>
 	<form action="{{ route('mng_add_new_bill_process') }}" id="formAddNewBill">
 		{{csrf_field()}}
-		Name of Customer: <input type="text" name="customer"> <br>
-		Number of ID: <input type="text" name="ID"><br>
-		Number of ID: <input type="number" name="ID"><br>
-		The books registered to borrow (max is 3) include: <br>
-		<div id="1">
-			1/
-			<select name="book1">
-				<option value=""></option>
-				@foreach($array_name as $name)
-                <option value="{{$name->ID_book}}" data-deposit="{{$name->Price}}">
-						{{$name->nameBook}} - {{$name->nameAuthor}} - {{$name->namePublisher}}
-					</option>
-				@endforeach
-			</select>
-			* <input type="number" name="number1">
-		</div>
-		<div id="2">
-			2/
-			<select name="book2">
-				<option value=""></option>
-				@foreach($array_name as $name)
-					<option value="{{$name->ID_book}}" data-deposit="{{$name->Price}}">
-						{{$name->nameBook}} - {{$name->nameAuthor}} - {{$name->namePublisher}}
-					</option>
-				@endforeach
-			</select>
-			* <input type="number" name="number2">
-		</div>
-		<div id="3">
-			3/
-			<select name="book3">
-				<option value=""></option>
-				@foreach($array_name as $name)
-					<option value="{{$name->ID_book}}" data-deposit="{{$name->Price}}">
-						{{$name->nameBook}} - {{$name->nameAuthor}} - {{$name->namePublisher}}
-					</option>
-				@endforeach
-			</select>
-			* <input type="number" name="number3">
-        </div>
-        <h4 id="totalPrice">Total deposit (equal to 50% of the original price):  <span name="">0</span></h4>
-		<button type="submit">Submit</button>
+		<table id="customer">
+			<tr>
+				<td width="30%">Name of Customer</td>
+				<td width="70%"><input class="customer" type="text" name="customer" required></td>
+			</tr>
+				<tr>
+					<td>Number of ID</td>
+					<td><input class="customer" type="text" name="ID" required pattern="^[0-9]+$"></td>
+			</tr>
+		</table>
+		<div id="list">
+			<h4>List of books to be borrowed</h4>
+			<div id="1">
+				1/
+				<select name="book1" class="book" required>
+					<option value=""></option>
+					@foreach($array_name as $name)
+	                <option value="{{$name->ID_book}}" data-deposit="{{$name->Price}}">
+							{{$name->nameBook}} - {{$name->nameAuthor}} - {{$name->namePublisher}}
+						</option>
+					@endforeach
+				</select>
+				* <input type="number" name="number1" class="amount" required min="0" max="3">
+			</div>
+			<div id="2">
+				2/
+				<select name="book2" class="book">
+					<option value=""></option>
+					@foreach($array_name as $name)
+						<option value="{{$name->ID_book}}" data-deposit="{{$name->Price}}">
+							{{$name->nameBook}} - {{$name->nameAuthor}} - {{$name->namePublisher}}
+						</option>
+					@endforeach
+				</select>
+				* <input type="number" name="number2" class="amount" min="0" max="3">
+			</div>
+			<div id="3">
+				3/
+				<select name="book3" class="book">
+					<option value=""></option>
+					@foreach($array_name as $name)
+						<option value="{{$name->ID_book}}" data-deposit="{{$name->Price}}">
+							{{$name->nameBook}} - {{$name->nameAuthor}} - {{$name->namePublisher}}
+						</option>
+					@endforeach
+				</select>
+				* <input type="number" name="number3" class="amount" min="0" max="3">
+	        </div>
+	    </div>
+	    <br>
+        <div id="deposit">
+        	<h4 id="totalPrice">Total deposit (equal to 50% of the original price):  
+        		<input type="number" name="total" value="0" style="color: red; border-style: solid; border-color: rgba(255,255,255, 0.1); background-color: rgba(255,255,255, 0.1);"/>
+        	</h4>
+    	</div>
+    	<br><br><br>
+		<div><button type="submit" onsubmit="alert('Create invoice successfully!')">Submit</button></div>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
@@ -73,7 +137,7 @@
         function updateTotalPrice() {
             var listSelect=$("#formAddNewBill div select");
             var listAmount=$("#formAddNewBill div input[type='number']");
-            var showPrice=$("#totalPrice span");
+            var showPrice=$("#totalPrice input[type='number']");
             var total=0;
             for (let index = 0; index < listSelect.length; index++) {
                 if(listAmount[index].value!=''  && listSelect[index].value!=''){
@@ -81,8 +145,10 @@
                 }
 
             }
-            showPrice.html(total);
+            showPrice.val(total);
         }
         processChangeValue();
     </script>
+</div>
+</center>
 @endsection

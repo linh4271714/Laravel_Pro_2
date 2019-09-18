@@ -1,58 +1,89 @@
 @extends('layer.master_mng')
 @section('content')
+<style type="text/css">
+    #add {
+        height: 300px; width: 50%;
+        color: white;
+        background-color: rgba(255, 0, 0, 0.7);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+        z-index: 1;
+        position: fixed;
+        top: 150px;
+        left: 430px;
+    }
+    button {
+        height: 30px;
+        width: 130px;
+    }
+    button:hover {
+        background-color: #D7B830;
+    }
+    input.add {
+        height: 25px;
+        width: 60px;
+    }
+    input.au {
+        height: 25px;
+        width: 250px;
+    }
+</style>
+<div id="add">
+    <center>
     <form action="{{ route('mng_add_publisher_process') }}">
-		{{csrf_field()}}
-		<div id="publisher1"> 
-		  Publisher Name: <input type="text" name="publisher1" autofocus="autofocus"><br>
+        {{csrf_field()}}
+        <div id="author1"> 
+          1/ Publisher Name: <input type="text" name="publisher1" autofocus="autofocus" class="au" required>*<br>
         </div>
         <br/>
-        <input type="button" id="btn1" value="+Add" />
-		<div id="publisher2" hidden="hidden"> 
-		  Publisher Name: <input type="text" name="publisher2"><br>
+        <input type="button" id="btn1" value="+Add" class="add" />
+        <div id="author2" hidden="hidden"> 
+          2/ Publisher Name: <input type="text" name="publisher2" class="au"><br>
         </div>
         <br/>
-        <input type="button" id="btn2" value="+Add" hidden="hidden"/>
-		<div id="publisher3" hidden="hidden"> 
-		  Publisher Name: <input type="text" name="publisher3"><br>
+        <input type="button" id="btn2" value="+Add" hidden="hidden" class="add"/>
+        <div id="author3" hidden="hidden"> 
+          3/ Publisher Name: <input type="text" name="publisher3" class="au"><br>
         </div>
         <br/>
-        <input type="button" id="btn3" value="+Add" hidden="hidden"/>
-		<div id="publisher4" hidden="hidden"> 
-		  Publisher Name: <input type="text" name="publisher4"><br>
+        <input type="button" id="btn3" value="+Add" hidden="hidden" class="add"/>
+        <div id="author4" hidden="hidden"> 
+          4/ Publisher Name: <input type="text" name="publisher4" class="au"><br>
         </div>
         <br/>
-        <input type="button" id="btn4" value="+Add" hidden="hidden"/>
-		<div id="publisher5" hidden="hidden"> 
-		  Publisher Name: <input type="text" name="publisher5"><br>
+        <input type="button" id="btn4" value="+Add" hidden="hidden" class="add"/>
+        <div id="author5" hidden="hidden"> 
+          5/ Publisher Name: <input type="text" name="publisher5" class="au"><br>
         </div>
         <br/>
         
-        <button>Add Publisher</button>
+        <button onsubmit="alert('The publishers has added success!')">Add Publishers</button>
 
         <script language="javascript">
             document.getElementById("btn1").onclick = function () {
-                document.getElementById("publisher2").style.display = 'block';
+                document.getElementById("author2").style.display = 'block';
                 document.getElementById("btn2").style.display = 'block';
                 document.getElementById("btn1").style.display = 'none';
             };
  
             document.getElementById("btn2").onclick = function () {
-                document.getElementById("publisher3").style.display = 'block';
+                document.getElementById("author3").style.display = 'block';
                 document.getElementById("btn3").style.display = 'block';
                 document.getElementById("btn2").style.display = 'none';
             };
  
             document.getElementById("btn3").onclick = function () {
-                document.getElementById("publisher4").style.display = 'block';
+                document.getElementById("author4").style.display = 'block';
                 document.getElementById("btn4").style.display = 'block';
                 document.getElementById("btn3").style.display = 'none';
             };
  
             document.getElementById("btn4").onclick = function () {
-                document.getElementById("publisher5").style.display = 'block';
+                document.getElementById("author5").style.display = 'block';
                 document.getElementById("btn4").style.display = 'none';
             };
  
         </script>
-		</form>
+        </form>
+    </center>
+</div>
 @endsection
