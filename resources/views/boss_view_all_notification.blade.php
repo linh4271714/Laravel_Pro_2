@@ -1,19 +1,38 @@
 @extends('layer.master_boss')
 @section('content')
-<div id="view">
-<table class="style_table">
-	<tr class="style_tr1">
-		<th class="style_th">Time</th>
-		<th class="style_th">Tittle</th>
-		<th class="style_th">Main Content</th>
-	</tr>
-	@foreach($array_notification as $a)
-		<tr class="style_tr2">
-			<td class="style_td">{{$a->Date}}</td>
-			<td class="style_td">{{$a->Title}}</td>
-			<td class="style_td">{{$a->Content}}</td>
-		</tr>
-	@endforeach
-</table>
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                   	<div class="header">
+                        <center><h4 class="title">Danh Sách Thông Báo</h4></center>
+                    </div>                            
+                    <div class="content table-responsive table-full-width">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                	<th class="text-right">Time</th>
+                                    <th>Tittle</th>
+                                    <th>Main Content</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($array_notification as $a)
+								<tr>                                            
+                                    <td class="text-right">{{$a->Date}}</td>
+                                    <td>{{$a->Title}}</td>
+                                    <td>{{$a->Content}}</td>
+								</tr>
+                                @endforeach                                        
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 @endsection

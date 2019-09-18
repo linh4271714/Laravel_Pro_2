@@ -1,6 +1,7 @@
 @extends('layer.master_boss')
 @section('content')
-<div  id="view">
+<center>
+<div>
 	<font size="3" color="#990000"> Please Enter Your Password </font><br>
 	<form action="{{ route('boss_check_password_process') }}" method='post'>
 		{{csrf_field()}} 
@@ -8,4 +9,5 @@
 		<button>Send</button>
 	</form>
 </div>
+</center>
 @endsection

@@ -1,21 +1,40 @@
 @extends('layer.master_boss')
 @section('content')
-<div id="view">
-<table class="style_table">
-	<tr class="style_tr1">
-		<th class="style_th">User Name</th>
-		<th class="style_th">Email</th>
-		<th class="style_th">Phone Number</th>
-		<th class="style_th">Address</th>
-	</tr>
-	@foreach ($array_manager as $mng)
-		<tr>
-			<td>{{$mng->Username}}</td>
-			<td>{{$mng->Email}}</td>
-			<td>{{$mng->PhoneNumber}}</td>
-			<td>{{$mng->Address}}</td>
-		</tr>
-	@endforeach
-</table>
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                   	<div class="header">
+                        <h4 class="title">Thông Tin Của Nhân Viên</h4>
+                    </div>                            
+                    <div class="content table-responsive table-full-width">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                	<th>User Name</th>
+                                    <th>Email</th>
+                                    <th class="text-right">Tel</th>
+                                    <th class="text-right">Address</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($array_manager as $mng)
+                                <tr>                                            
+                                    <td>{{$mng->Username}}</td>
+                                    <td>{{$mng->Email}}</td>
+                                    <td class="text-right">{{$mng->PhoneNumber}}</td>
+                                    <td class="text-right">{{$mng->Address}}</td>
+								</tr>
+                                @endforeach                                        
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
 @endsection

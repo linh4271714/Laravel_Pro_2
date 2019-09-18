@@ -24,7 +24,7 @@ class BossController extends Controller
         if(count($boss_array)==1){
             Session::put('username',$boss_array[0]->Username);
 
-            return redirect()->route('boss_view_accout');
+            return redirect()->route('boss_search');
         }
         return redirect()->route('boss_login')->with('error','Login information is incorrect.');
     }

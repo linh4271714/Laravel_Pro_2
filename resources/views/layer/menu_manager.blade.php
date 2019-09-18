@@ -114,10 +114,10 @@
 						<li><a href="{{ route('view_all_publisher') }}">All Publisher</a></li>
 					</ul>
 				</li>
-				<li><a href="#">ACCOUT</a>
+				<li><a href="#">ACCOUNT</a>
 					<ul id="sub">             
-						<li><a href="{{ route('mng_view_accout') }}">View Accout</a></li>
-						<li><a href="{{ route('mng_check_password') }}">Edit Accout</a></li>
+						<li><a href="{{ route('mng_view_accout') }}">View Account</a></li>
+						<li><a href="{{ route('mng_check_password') }}">Edit Account</a></li>
 						<li><a href="{{ route('mng_check_password_2') }}">Change Password</a></li>
 						<li><a href="{{ route('mng_logout') }}">Log Out</a></li>
 					</ul>
