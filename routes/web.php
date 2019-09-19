@@ -187,5 +187,22 @@ Route::group(["prefix" => "managers", "middleware" => "CheckManager"], function(
 
 		Route::get('$group/mng_add_new_bill_total',"$controller@mng_add_new_bill_total")
 		->name('mng_add_new_bill_total');
+
+		Route::get('$group/mng_receive_book',"$controller@mng_receive_book")
+		->name('mng_receive_book');
+
+		Route::get('$group/mng_receive_book_process',"$controller@mng_receive_book_process")
+		->name('mng_receive_book_process');
+
+		Route::get('$group/mng_receive_book_detailed',"$controller@mng_receive_book_detailed")
+		->name('mng_receive_book_detailed');
+
+		Route::get('$group/mng_search_bill',"$controller@mng_search_bill")
+		->name('mng_search_bill');
+
+		Route::get('$group/mng_search_bill_process',"$controller@mng_search_bill_process")
+		->name('mng_search_bill_process');
+
+		
 	});
 });

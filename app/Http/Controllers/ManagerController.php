@@ -333,4 +333,42 @@ class ManagerController extends Controller
         }
         return view('mng_search_result', compact('array_result'));
     }
+
+    public function mng_receive_book() {
+        return view('mng_receive_book');
+    }
+    public function mng_receive_book_process(){
+        $mng_model = new ManagerModel();
+
+        $mng_model->idreader = Request::get('ID');
+        $mng_model->status = "Be borrowing";
+        $array_bill = $mng_model->search_bill_borrowing();
+
+        if(count($array_bill)>0){
+            return view('mng_receive_book_process', compact('array_bill'));
+        }else{
+            return view('mng_receive_book_no_result');
+        }
+    }
+    public function mng_receive_book_detailed(){
+        $mng_model = new ManagerModel();
+        $mng_model->idbill = Request::get('ID_bill');
+        $array_detailed = $mng_model->get_detailed();
+        return view('mng_receive', compact('array_detailed'));
+    }
+    public function mng_search_bill(){
+        $mng_model = new ManagerModel();
+        $array_bill = $mng_model->mng_search_all_bill_process();
+        return view('mng_search_bill', compact('array_bill'));
+    }
+    public function mng_search_bill_process()
+    {
+        $mng_model = new ManagerModel();
+        $mng_model->idreader = Request::get('ID');
+        $mng_model->borrowdate = Request::get('bd');
+        $mng_model->receivedate = Request::get('rd');
+        $array_bill = $mng_model->mng_search_bill_process();
+        return view('mng_search_bill_result', compact('array_bill'));
+    }
+
 }

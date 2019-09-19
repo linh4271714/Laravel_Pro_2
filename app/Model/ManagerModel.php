@@ -163,4 +163,35 @@ class ManagerModel
             where ID_book = ID_book_1 or ID_book = ID_book_2 or ID_book = ID_book_3');
         return $deposit = $sum/2;
     }
+    public function search_bill_borrowing(){
+        return $array_bill = DB::select('select * from bills join detailedinvoice 
+            on bills.ID_bill = detailedinvoice.ID_bill 
+            join managers on bills.Lender = managers.ID_manager
+            where ID_reader = ? and Status = ?', [
+                $this->idreader, $this->status
+            ]);
+    }
+    public function get_detailed(){
+        return $array_detailed = DB::select('select * from detailedinvoice join books
+            on detailedinvoice.ID_book = books.ID_book
+            where ID_bill = ?', [$this->idbill]);
+    }
+
+    public function mng_search_all_bill_process()
+    {
+        return $array_bill = DB::select("select * from bills 
+            join managers on bills.Lender = managers.ID_manager 
+            order by bills.ID_bill desc");
+    }
+
+    public function mng_search_bill_process()
+    {
+        $id = $this->idreader;
+        $bd = $this->borrowdate;
+        $rd = $this->receivedate;
+        return $array_bill = DB::select("select * from bills 
+            join managers on bills.Lender = managers.ID_manager
+            where ID_reader like '%$id%' or BorrowDate like '%$bd%' or ReturnDate like '%$rd%' 
+            order by bills.ID_bill desc");
+    }
 }

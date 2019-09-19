@@ -55,11 +55,11 @@
 		<table id="customer">
 			<tr>
 				<td width="30%">Name of Customer</td>
-				<td width="70%"><input class="customer" type="text" name="customer" required></td>
+				<td width="70%"><i class="fas fa-file-signature"></i><input class="customer" type="text" name="customer" required></td>
 			</tr>
 				<tr>
 					<td>Number of ID</td>
-					<td><input class="customer" type="text" name="ID" required pattern="^[0-9]+$"></td>
+					<td><i class="fas fa-id-card"></i><input class="customer" type="text" name="ID" required pattern="^[0-9]+$"></td>
 			</tr>
 		</table>
 		<div id="list">
@@ -108,7 +108,10 @@
         	</h4>
     	</div>
     	<br><br><br>
-		<div><button type="submit" onsubmit ="alert('Create invoice successfully!')" >Submit</button></div>
+		<div style="float: left; width: 100%; margin-top: 50px;">
+			<button type="submit" onsubmit ="alert('Create invoice successfully!')" title="Submit" >
+				<i class="fas fa-check-circle"></i>Submit
+			</button></div>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>

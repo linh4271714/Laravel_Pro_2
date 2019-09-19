@@ -12,8 +12,10 @@
 		position: fixed;
 		height: 150px;
 		top: 0;
-		left: 540px;
-		background-color: black;
+		left: 460px;
+		background-color: black;	
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.8))); /* Chrome,Safari4+ */
+		z-index: 1;
 	}
 	input.search {
 		height: 30px;
@@ -26,13 +28,14 @@
 	}
 	.image {
 		width: 200px;
-		padding: 10px;
+		height: 250px;
 	}
 	.infor {
 			width: 500px;
-			padding-top: 10px;
-			padding-bottom: 10px;
 			padding-left: 20px;
+			background-color: rgba(255, 0, 0, 0.7);
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.8))); /* Chrome,Safari4+ */
+			z-index: 1;
 	}
 </style>
 <div id="search">
@@ -53,7 +56,7 @@
 		<center>
 			<br>
 	@foreach($array_result as $book)
-		<table>
+		<table cellspacing="10px">
 			<tr>
 				<td class="image">
 					<img src="{{asset($book->Image)}}" alt="{{ $book->Image }}" class="image">

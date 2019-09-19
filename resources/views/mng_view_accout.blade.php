@@ -2,7 +2,7 @@
 @section('content')
 <style type="text/css">
 	#view_account {
-		height: 215px; width: 50%;
+		height: 300px; width: 50%;
 		background-color: rgba(255, 0, 0, 0.7);
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
 		z-index: 1;

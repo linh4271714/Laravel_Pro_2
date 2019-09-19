@@ -1,9 +1,11 @@
 <style type="text/css">
 	a {
 		text-decoration: none;
+		color: white;
 	}
 	#menu_table {
 		position: fixed;
+		top: 100px;
 		float: left;
 		background-color: rgba(255, 0, 0, 0.7);
 	}
@@ -19,6 +21,7 @@
 		margin-left: -40px;
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
 		z-index: 1;
+		width: 250px;
 	}
 	ul#menu li {
 		margin: auto;
@@ -61,7 +64,7 @@
 		    height: 20px;
 		    top: -20px;
 		    left: -78px;
-		    text-align: center;
+		    text-align: left;
 		    padding: 10px;
 	}
 	ul#menu li:hover ul#sub {
@@ -83,43 +86,43 @@
 	</div>
 	<div id="menu_div">
 			<ul id="menu">
-				<li><a href="#">BILL MANAGEMENT</a>
+				<li><a href="#"><i class="fas fa-file-invoice"></i>BILL<br> MANAGEMENT</a>
 					<ul id="sub">             
-						<li><a href="{{ route('mng_add_new_bill') }}">Add new bill</a></li>
-						<li><a href="">Receive the book</a></li>
-						<li><a href="{{ route('mng_search') }}">Search</a></li>
+						<li><a href="{{ route('mng_add_new_bill') }}"><i class="fas fa-plus"></i>Add new bill</a></li>
+						<li><a href="{{ route('mng_receive_book') }}"><i class="fas fa-recycle"></i>Receive the book</a></li>
+						<li><a href="{{ route('mng_search_bill') }}"><i class="fas fa-search"></i>Search</a></li>
 					</ul>
 				</li>
-				<li><a href="#">BOOKSTORE MANAGEMENT</a>
+				<li><a href="#"><i class="fas fa-book-open"></i>BOOKSTORE<br> MANAGEMENT</a>
 					<ul id="sub">             
-						<li><a href="{{ route('import_book') }}">Import Books</a></li>
-						<li><a href="{{ route('mng_search') }}">Search</a></li>
+						<li><a href="{{ route('import_book') }}"><i class="fas fa-plus"></i>Import Books</a></li>
+						<li><a href="{{ route('mng_search') }}"><i class="fas fa-search"></i>Search</a></li>
 					</ul>
 				</li>
-				<li><a href="#">CATEGORIES MANAGEMENT</a>
+				<li><a href="#"><i class="fas fa-list"></i>CATEGORIES<br> MANAGEMENT</a>
 					<ul id="sub">             
-						<li><a href="{{ route('add_category') }}">Add Category</a></li>
-						<li><a href="{{ route('view_all_category') }}">All Caregory</a></li>
+						<li><a href="{{ route('add_category') }}"><i class="fas fa-plus"></i>Add Category</a></li>
+						<li><a href="{{ route('view_all_category') }}"><i class="fas fa-eye"></i>All Caregory</a></li>
 					</ul>
 				</li>
-				<li><a href="#">AUTHORS MANAGEMENT</a>
+				<li><a href="#"><i class="fas fa-pen-alt"></i>AUTHORS<br> MANAGEMENT</a>
 					<ul id="sub">             
-						<li><a href="{{ route('add_author') }}">Add Author</a></li>
-						<li><a href="{{ route('view_all_author') }}">All Author</a></li>
+						<li><a href="{{ route('add_author') }}"><i class="fas fa-plus"></i>Add Author</a></li>
+						<li><a href="{{ route('view_all_author') }}"><i class="fas fa-eye"></i>All Author</a></li>
 					</ul>
 				</li>
-				<li><a href="#">PUBLISHERS MANAGEMENT</a>
+				<li><a href="#"><i class="fas fa-building"></i>PUBLISHERS<br> MANAGEMENT</a>
 					<ul id="sub">             
-						<li><a href="{{ route('add_publisher') }}">Add Publisher</a></li>
-						<li><a href="{{ route('view_all_publisher') }}">All Publisher</a></li>
+						<li><a href="{{ route('add_publisher') }}"><i class="fas fa-plus"></i>Add Publisher</a></li>
+						<li><a href="{{ route('view_all_publisher') }}"><i class="fas fa-eye"></i>All Publisher</a></li>
 					</ul>
 				</li>
-				<li><a href="#">ACCOUNT</a>
+				<li><a href="#"><i class="fa fa-user"></i>ACCOUNT</a>
 					<ul id="sub">             
-						<li><a href="{{ route('mng_view_accout') }}">View Account</a></li>
-						<li><a href="{{ route('mng_check_password') }}">Edit Account</a></li>
-						<li><a href="{{ route('mng_check_password_2') }}">Change Password</a></li>
-						<li><a href="{{ route('mng_logout') }}">Log Out</a></li>
+						<li><a href="{{ route('mng_view_accout') }}"><i class="fas fa-eye"></i>View Account</a></li>
+						<li><a href="{{ route('mng_check_password') }}"><i class="fas fa-edit"></i>Edit Account</a></li>
+						<li><a href="{{ route('mng_check_password_2') }}"><i class="fas fa-edit"></i>Change Password</a></li>
+						<li><a href="{{ route('mng_logout') }}"><i class="fas fa-sign-out-alt"></i>Log Out</a></li>
 					</ul>
 				</li>
 			</ul>

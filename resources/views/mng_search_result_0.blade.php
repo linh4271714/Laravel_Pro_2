@@ -12,8 +12,10 @@
 		position: fixed;
 		height: 150px;
 		top: 0;
-		left: 540px;
-		background-color: black;
+		left: 460px;
+		background-color: black;	
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.8))); /* Chrome,Safari4+ */
+		z-index: 1;
 	}
 	input.search {
 		height: 30px;
@@ -27,21 +29,12 @@
 	#result {
 		height: 1000px;
 	}
-	.image {
-		width: 200px;
-		padding: 10px;
-	}
-	.infor {
-			width: 500px;
-			padding-top: 10px;
-			padding-bottom: 10px;
-			padding-left: 20px;
-	}
 </style>
 <div id="search">
 	<div id="form">
 		<br><br><br>
 		<center>
+		Search by<br>
 			<form action="{{ route('mng_search_process') }}">
 				{{csrf_field()}}
 			<input type="text" name="name_book" placeholder="Enter the title of the book" class="search">

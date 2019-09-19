@@ -22,6 +22,9 @@
         height: 25px;
         width: 60px;
     }
+    input.add:hover {
+        background-color: #D7B830;
+    }
     input.au {
         height: 25px;
         width: 250px;
