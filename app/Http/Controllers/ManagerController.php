@@ -370,5 +370,12 @@ class ManagerController extends Controller
         $array_bill = $mng_model->mng_search_bill_process();
         return view('mng_search_bill_result', compact('array_bill'));
     }
+    public function detail_process()
+    {
+        $mng_model = new ManagerModel();
+        $mng_model->maHoaDon=Request::get("id");
+
+        return $mng_model->detailBill();;
+    }
 
 }

@@ -32,9 +32,13 @@
 	button:hover {
 		background-color: #D7B830;
 	}
+	h4 {
+		text-align: center;
+		color: white;
+	}
 </style>
 <div id="view_account">
-	<br><br>
+	<h4>Your Account</h4>
 	<table id="table">
 		@foreach ($array_mng as $mng)
 		<tr id="tr" style="background-color: #D0D5DC;">

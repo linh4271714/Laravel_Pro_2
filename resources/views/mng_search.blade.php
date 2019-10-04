@@ -12,7 +12,7 @@
 		position: fixed;
 		height: 150px;
 		top: 0;
-		left: 460px;
+		left: 500px;
 		background-color: black;	
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.8))); /* Chrome,Safari4+ */
 		z-index: 1;
@@ -41,7 +41,7 @@
 	#between {
 		float: left;
 		width: 100%;
-		height: 140px;
+		height: 180px;
 	}
 	.image {
 		width: 200px;

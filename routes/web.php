@@ -203,6 +203,7 @@ Route::group(["prefix" => "managers", "middleware" => "CheckManager"], function(
 		Route::get('$group/mng_search_bill_process',"$controller@mng_search_bill_process")
 		->name('mng_search_bill_process');
 
-		
+		Route::post('$group/detail_process',"$controller@detail_process")
+		->name("detail_process");
 	});
 });

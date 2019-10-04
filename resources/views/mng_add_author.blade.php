@@ -2,7 +2,7 @@
 @section('content')
 <style type="text/css">
     #add {
-        height: 300px; width: 50%;
+        height: 360px; width: 50%;
         color: white;
         background-color: rgba(255, 0, 0, 0.7);
         background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
@@ -32,6 +32,7 @@
 </style>
 <div id="add">
     <center>
+        <h4>You can add up to 5 at once</h4>
     <form action="{{ route('mng_add_author_process') }}">
 		{{csrf_field()}}
 		<div id="author1"> 

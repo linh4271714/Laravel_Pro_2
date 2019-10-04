@@ -1,5 +1,6 @@
 @extends('layer.master_mng')
 @section('content')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style type="text/css">
 	#form_search_bill {
 		height: 150px; width: 50%;
@@ -34,9 +35,9 @@
 		width: 130px;
 		transition-duration: 0.1s;
         /* Safari */
-        -webkit-transition-duration: 0.1s; 
+        -webkit-transition-duration: 0.1s;
         /* Mozilla Firefox */
-        -moz-transition-duration: 0.1s; 
+        -moz-transition-duration: 0.1s;
         /* Opera */
         -o-transition-duration: 0.1s;
         /* IE 9 */
@@ -45,8 +46,8 @@
 	button:hover {
 		background-color: #D7B830;
 		transform: scale(1.2);
-	        -webkit-transform: scale(1.2); 
-	        -moz-transform: scale(1.2); 
+	        -webkit-transform: scale(1.2);
+	        -moz-transform: scale(1.2);
 	        -o-transform: scale(1.2);
 	        -ms-transform: scale(1.2);
     	cursor: pointer;
@@ -56,7 +57,7 @@
 	<center>
 		Search by<br>
 	<form action="{{ route('mng_search_bill_process') }}">
-		{{csrf_field()}} 
+		{{csrf_field()}}
 		<br><br>
 		<input type="text" name="ID" placeholder="   ID customer" >
 		<input type="text" name="bd" placeholder="   borrow date" >
@@ -76,7 +77,8 @@
 				<th width="35%">Reader Name</th>
 				<th width="30%">Status</th>
 				<th width="10%">See details</th>
-			</tr>
+            </tr>
+
 		</thead>
 		<tbody>
 			@foreach($array_bill as $bill)
@@ -85,10 +87,89 @@
 				<td>{{$bill->BorrowDate}}</td>
 				<td>{{$bill->ReaderName}}</td>
 				<td>{{$bill->Status}}</td>
-				<td><i class="fas fa-angle-double-right" title="See details"></i></td>
-			</tr>
+				<td class="seeDetail" ><i class="fas fa-angle-double-right" data-id="{{$bill->ID_bill}}" data-status="0" title="See details"></i></td>
+            </tr>
+            <tr class="hiddenInfor {{$bill->ID_bill}}" >
+                <th colspan="5">
+                    <table style="width:100%;">
+                        {{-- <tr>
+                            <th>Tên sách </th>
+                            <th>Số lượng</th>
+                            <th>Ngày mượn </th>
+                            <th>Ngày trả</th>
+                            <th>Tiền cọc</th>
+                            <th>Người cho thuê</th>
+                            <th>Tổng tiền hóa đơn</th>
+                        </tr> --}}
+                    </table>
+                </th>
+            </tr>
 			@endforeach
 		</tbody>
 	</table>
 </div>
+<script>
+    $(document).ready(function () {
+        $(".seeDetail").click(function (e) {
+
+            var elementTarget=$(".hiddenInfor."+e.target.getAttribute("data-id")+" th table");
+            console.log(elementTarget);
+            var elementTarget2=$(".hiddenInfor."+e.target.getAttribute("data-id"));
+
+            if(e.target.getAttribute("data-status")==0){
+
+
+            $(".hiddenInfor").slideUp();
+            $.ajax({
+                type: "post",
+                url: "{{route('detail_process')}}",
+                data: {id:e.target.getAttribute("data-id"),"_token":"{{csrf_token()}}"},
+                success: function (response) {
+
+                    $(elementTarget).html("");
+                    if(response.length>0){
+						$(elementTarget).append("<tr><th>Tên sách </th><th>Số lượng</th><th>Ngày mượn </th><th>Ngày trả</th><th>Tiền cọc</th><th>Người cho thuê</th><th>Tổng tiền hóa đơn</th></tr>");
+                        for (let i = 0; i < response.length; i++) {
+
+
+							if(i==0){
+								$(elementTarget).append("<tr><td>"+response[i].Name+"</td>"+
+                                "<td>"+response[i].Amount+"</td>"+
+                                "<td rowspan='"+response.length+"'>"+response[i].BorrowDate+"</td>"+
+                                "<td rowspan='"+response.length+"'>"+response[i].ReturnDate+"</td>"+
+                                "<td rowspan='"+response.length+"'>"+response[i].Total+"</td>"+
+                                "<td>"+response[i].Username+"</td>"+
+                                "<td>"+response[i].tongGiaTriHoaDon+"</td></tr>");
+							}else{
+								$(elementTarget).append("<tr><td>"+response[i].Name+"</td>"+
+                                "<td>"+response[i].Amount+"</td>"+
+                                "<td>"+response[i].Username+"</td>"+
+                                "<td>"+response[i].tongGiaTriHoaDon+"</td></tr>");
+							}
+
+
+                        }
+                        // $(elementTarget).append("<td>"+response[0].Amount+"</td>");
+                        // $(elementTarget).append("<td>"+response[0].BorrowDate+"</td>");
+                        // $(elementTarget).append("<td>"+response[0].ReturnDate+"</td>");
+                        // $(elementTarget).append("<td>"+response[0].Total+"</td>");
+                        // $(elementTarget).append("<td>"+response[0].Username+"</td>");
+                        // $(elementTarget).append("<td>"+response[0].tongGiaTriHoaDon+"</td></tr>");
+                        e.target.setAttribute('data-status','1');
+                        $(elementTarget2).slideDown();
+                    }else{
+                        $(elementTarget).append("<td colspan='6'>Chưa có thông tin</td>");
+                        e.target.setAttribute('data-status','1');
+                        $(elementTarget2).slideDown();
+                    }
+                }
+            });
+            }else{
+                $(elementTarget2).slideUp();
+                e.target.setAttribute('data-status','0');
+            }
+        })
+        $(".hiddenInfor").slideUp();
+    })
+</script>
 @endsection

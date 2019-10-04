@@ -164,17 +164,21 @@ class ManagerModel
         return $deposit = $sum/2;
     }
     public function search_bill_borrowing(){
-        return $array_bill = DB::select('select * from bills join detailedinvoice 
-            on bills.ID_bill = detailedinvoice.ID_bill 
+        return $array_bill = DB::select('select *,
+            datediff(CURRENT_DATE,bills.BorrowDate) as soNgayMuon from bills join detailedinvoice
+            on bills.ID_bill = detailedinvoice.ID_bill
             join managers on bills.Lender = managers.ID_manager
             where ID_reader = ? and Status = ?', [
                 $this->idreader, $this->status
             ]);
     }
     public function get_detailed(){
-        return $array_detailed = DB::select('select * from detailedinvoice join books
-            on detailedinvoice.ID_book = books.ID_book
-            where ID_bill = ?', [$this->idbill]);
+        return $array_detailed = DB::select('select *, datediff(CURRENT_DATE,bills.BorrowDate) as soNgayMuon 
+            from detailedinvoice join books
+            on detailedinvoice.ID_book = books.ID_book join bills on bills.ID_bill=detailedinvoice.ID_bill
+            where detailedinvoice.ID_bill = ?', [
+                $this->idbill
+            ]);
     }
 
     public function mng_search_all_bill_process()
@@ -191,7 +195,18 @@ class ManagerModel
         $rd = $this->receivedate;
         return $array_bill = DB::select("select * from bills 
             join managers on bills.Lender = managers.ID_manager
-            where ID_reader like '%$id%' or BorrowDate like '%$bd%' or ReturnDate like '%$rd%' 
+            where ID_reader like '%$id%' and BorrowDate like '%$bd%' and ReturnDate like '%$rd%' 
             order by bills.ID_bill desc");
+    }
+    public function detailBill()
+    {
+        return DB::select("select a.Username, a.BorrowDate, a.ReturnDate, a.Amount, a.Total, books.Name,
+            ifnull(datediff(ReturnDate,BorrowDate)*2*a.Amount,0) as tongGiaTriHoaDon 
+            from books inner join (
+            select managers.Username, BorrowDate, ReturnDate, ID_book, Amount, Total 
+            from bills join managers on bills.Lender= managers.ID_manager 
+            join detailedinvoice on detailedinvoice.ID_bill=bills.ID_bill 
+            where detailedinvoice.ID_bill=?
+            )a on a.ID_book=books.ID_book",[$this->maHoaDon]);
     }
 }
