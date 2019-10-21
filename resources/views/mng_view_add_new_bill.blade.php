@@ -8,7 +8,7 @@
 		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
 		z-index: 1;
 		position: fixed;
-		top: 90px;
+		top: 180px;
 		left: 430px;
 	}
 	table#customer{
@@ -61,7 +61,7 @@
 			</tr>
 				<tr>
 					<td>Number of ID</td>
-					<td><i class="fas fa-id-card"></i><input class="customer" type="text" name="ID" required pattern="^[0-9]+$"></td>
+					<td><i class="fas fa-id-card"></i><input class="customer" type="text" name="ID" required pattern="^[0-9]+$" max="999999999999"></td>
 			</tr>
 		</table>
 		<div id="list">
@@ -111,9 +111,10 @@
     	</div>
     	<br><br><br>
 		<div style="float: left; width: 100%; margin-top: 50px;">
-			<button type="submit" onsubmit ="alert('Create invoice successfully!')" title="Submit" >
+			<button type="submit" onclick ="alert('Create invoice successfully!');" title="Submit" >
 				<i class="fas fa-check-circle"></i>Submit
-			</button></div>
+			</button>
+		</div>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
